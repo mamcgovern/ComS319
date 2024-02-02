@@ -65,24 +65,6 @@
       fill: currentColor;
     }
 
-    .nav-scroller {
-      position: relative;
-      z-index: 2;
-      height: 2.75rem;
-      overflow-y: hidden;
-    }
-
-    .nav-scroller .nav {
-      display: flex;
-      flex-wrap: nowrap;
-      padding-bottom: 1rem;
-      margin-top: -1px;
-      overflow-x: auto;
-      text-align: center;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-
     .btn-bd-primary {
       --bd-violet-bg: #712cf9;
       --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
@@ -211,10 +193,46 @@
   <main>
 
     <section>
-      <h1 style="text-align: center;">About</h1>
+      <h1 style="text-align: center;">About:</h1>
     </section>
 
-    <p>Our about info will go here</p>
+    <section>
+      <div class = "container">
+        <h2>Class Information</h2>
+        <p style="font-family: 'Courier New', Courier, monospace; color: brown">Assignment 1</p>
+        <p>Com S 319: Construction of User Interfaces</p>
+        <p>Professor Ali Jannesari</p>
+        <p>February 2, 2024</p>
+      </div>
+      
+    </section>
+
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+        <h2>Developers:</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h2>Maddelynne McGovern</h2>
+                <p style="font-family: 'Courier New', Courier, monospace; color: brown">mrm4@iastate.edu</p>
+                <p class="card-text">I am a senior double majoring in computer science and political science at Iowa State University.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <!-- TODO: Verify information here -->
+                <h2>Jennifer Hua</h2>
+                <p style="font-family: 'Courier New', Courier, monospace; color: brown">jthua@iastate.edu</p>
+                <p class="card-text">Some sort of about text here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer class="text-body-secondary py-5">

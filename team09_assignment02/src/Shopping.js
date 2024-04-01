@@ -55,7 +55,7 @@ const Shop = () => {
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <button onClick={() => handleClick(0)}>Browse</button>
                             <button onClick={() => handleClick(1)}>Cart</button>
-                            <button onClick={() => handleClick(2)}>Confirmation</button>
+                            
                         </ul>
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
                             <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
@@ -88,9 +88,21 @@ const Shop = () => {
         ));
 
         return (<div>
-            <button onClick={() => handleClick(0)}>Browse</button>
+                <header class="p-3 navbar1 navigation">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <button onClick={() => handleClick(0)}>Browse</button>
+                            <button onClick={() => handleClick(1)}>Cart</button>
+                            <button onClick={() => handleClick(2)}>Confirmation</button>                            
+                        </ul>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
+                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
+                        </form>
+                    </div>                   
+                </header>
+            {/* <button onClick={() => handleClick(0)}>Browse</button>
             <button onClick={() => handleClick(1)}>Cart</button>
-            <button onClick={() => handleClick(2)}>Confirmation</button>
+            <button onClick={() => handleClick(2)}>Confirmation</button> */}
             <h1>This is Cart View</h1>
             <div>Items in Cart :</div>
             <div>{cartItems}</div>
@@ -111,6 +123,17 @@ const Shop = () => {
         ));
         
         return (<div className="bg-gray-100 p-4 text-purple-500">
+                <header class="p-3 navbar1 navigation">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <button onClick={() => handleClick(0)}>Browse</button>
+                            <button onClick={() => handleClick(1)}>Cart</button>
+                        </ul>
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
+                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
+                        </form>
+                    </div>                   
+                </header>
             <button onClick={() => handleClick(0)}>Browse</button>
             <button onClick={() => handleClick(1)}>Cart</button>
             <button onClick={() => handleClick(2)}>Confirmation</button>

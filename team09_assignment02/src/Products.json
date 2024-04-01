@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Agnes Rose the Ostrich",
+        "price": 19.99,
+        "description": "Preeee-senting Contestant #42: Agnes Rose! From Junior Queen of the Galaxy to Little Miss Baked Potato, the only thing Agnes Rose loses at beauty pageants is the occasional bobby pin. With her signature talent—complimenting the judges in iambic pentameter—its not hard to figure out why!",
+        "category": "12-Inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/SQCR05121SQK-Squishmallows-12InchMediumPlush-Ostrich-SELECTSERIES-OP-Front-lpr_1440x.jpg?v=1710273295"
+    },
+    {
+        "id": 2,
+        "title": "Lockwood the Rockhopper Penguin",
+        "price": 19.99,
+        "description": "Lockwood plays professional football! He’s living his dream as a kicker playing for his favorite regional team. Lockwood thrives under pressure, and loves having a whole stadium watch him make a winning kick. Want tickets to this Sunday’s game?",
+        "category": "14-Inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/SQCR0397114_Squishmallows-Lockwood-RockhopperPenguin-Front-lpr_1440x.jpg?v=1710349792"
+    },
+    {
+        "id": 3,
+        "title": "Santino the Platypus",
+        "price": 15.99,
+        "description": "Santino makes the best blueberry pancakes, his dad taught him how to add the blueberries just right. When he’s not making pancakes for all his friends, you can find Santino playing soccer, he wants to be a professional goalie someday.",
+        "category": "12-Inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/Santino_1_900x.jpg?v=1690223257"
+    },
+    {
+        "id": 4,
+        "title": "Warren the Boar",
+        "price": 19.99,
+        "description": "If you’re always in the mood for a laugh, Warren is the ‘Mallow for you! This boar tests all his jokes on his buddies before performing his stand-up act at a comedy club. Warren jokes a lot about himself and his wacky childhood. Did you know he has 10 siblings?",
+        "category": "10-Inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/Squishmallows-7.5in-Warren-Brown-Boar-SQCR02666-FRONT-lpr_1440x.jpg?v=1709849594"
+    },
+    {
+        "id": 5,
+        "title": "Archie the Axolotl Spray Pad",
+        "price": 43.11,
+        "description": "Make a big splash this summer with the BigMouth x Squishmallows Archie the Axolot Sprinkler Splash Pad. The 69-inch splash pad is outlined in a bumper of tiny holes to create a sky-high water fountain for hours of fun with your littles. The splash pad connects to a standard U.S. garden hose for each assembly and is designed to keep water on the pad, protecting grass from getting too soaked.",
+        "category": "69-inch",
+        "image": "https://i5.walmartimages.com/seo/BigMouth-X-Squishmalows-Archie-the-Axolotl-Spray-Pad_27af1277-0df1-42ed-9e89-283524d033e8.f3736a7d013bfcf6ac10fe1baf561eb4.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF"
+    },
+    {
+        "id": 6,
+        "title": "Gideon the Guacamole",
+        "price": 12.99,
+        "description": "He is the life of the party wherever he goes! Gideon has been all over the world and is full of stories from his travels. He’s wrestled a giant squid, climbed to the top of 'Mallow Mountain, and has eaten with a king and queen! Will you join Gideon on his next adventure?",
+        "category": "7-inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/SQCR00562-FRONT-lpr_1024x.jpg?v=1706564463"
+    }
+]

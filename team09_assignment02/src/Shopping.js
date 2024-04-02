@@ -42,21 +42,27 @@ const Shop = () => {
     function viewBrowse() {
         // generates each items HTML
         const listItems = items.map((el) => (
-            <div class="row border-top border-bottom" key={el.id}>
-                <div class="row main align-items-center">
-                    <div class="col-2">
-                        <img class="img-fluid" src={el.image} width='150px' />
-                    </div>
-                    <div class="col">
-                        <div class="row text-muted">{el.title}</div>
-                        <div class="row">{el.category}</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-                        <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
-                    </div>
-                    <div class="col">
-                        ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img class="img-fluid" src={el.image} width='150px' />
+                                <div class="card-body">
+                                    <div class="col">
+                                        <div class=" text-muted">{el.title} &ensp; {el.category}</div><br/>
+                                    </div>
+                                    <p class="card-text">{el.description}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
+                                            <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                                        </div>
+                                        ${el.price} &ensp;&#10005;{howManyofThis(el.id)}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

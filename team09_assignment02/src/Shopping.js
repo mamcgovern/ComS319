@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import items from "./Products.json";
 
+// TODO Create video
+
 const Shop = () => {
     /*
      * 0: browse view
@@ -102,6 +104,7 @@ const Shop = () => {
      */
     function viewCart() {
         // generates each item's HTML
+        // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
         const cartItems = cart.map((el) => (
             <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
@@ -300,7 +303,7 @@ const Shop = () => {
                             <hr class="my-4" />
 
                             {/* Submit Button */}
-                            <button class="w-100 btn btn-primary btn-lg" type="submit" onClick={() => submitForm()}>Checkout</button>
+                            <button class="w-100 btn btn-primary btn-lg" type="submit" onClick={() => submitForm()}>Order</button>
                         </form>
                     </div>
                 </div>
@@ -317,6 +320,7 @@ const Shop = () => {
      */
     function viewConfirmation() {
         // generates each item's HTML
+        // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
         const cartItems = cart.map((el) => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">

@@ -31,6 +31,97 @@ const Shop = () => {
     const [cardName, setCardName] = useState("");
     const [cardNumber, setCardNumber] = useState("");
 
+
+
+     // plus button function
+    const addToCart = (el) => {
+        setCart([...cart, el]);
+        if(!checkoutCart.includes(el)){
+            setCheckoutCart([...checkoutCart, el]);
+        }
+    };
+
+    //minus button function
+    const removeFromCart = (el) => {
+        let itemFound = false;
+        const updatedCart = cart.filter((cartItem) => {
+        if (cartItem.id === el.id && !itemFound) {
+            itemFound = true;
+            return false;
+        }
+        return true;
+        });
+        if (itemFound) {
+        setCart(updatedCart);
+        }
+    };
+    
+    const handleChange = (e) => {
+        let empty = false;
+        setQuery(e.target.value);
+        const results = items.filter((eachProduct) => {
+          if (e.target.value === ""){
+            empty = true
+            return ProductsCategory;
+          }
+          return eachProduct.title.toLowerCase().includes(e.target.value.toLowerCase());
+        });
+        setProductsCategory(results);
+        if(!empty){
+            setView(3);
+        }
+      }; 
+    function viewFilteredSearch() {
+        const listItems = ProductsCategory.map((el) => (
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {/* <div> */}
+                        {/* <div class="col"> */}
+                            <div class="card shadow-sm">
+                                <img  src={el.image} width='180px' />
+                                <div class="card-body">
+                                    <div > {/*class="col"*/}
+                                        <div><strong>{el.title}</strong><br/> {el.category}</div><br/>
+                                        <div>${el.price}</div><br/>
+                                        
+                                    </div>
+                                    <p class="card-text">{el.description}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
+                                            <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                                        </div>
+                                         &ensp;&#10005;{howManyofThis(el.id)}
+                                    </div>
+                                </div>
+                            </div>
+                        {/* </div> */}
+                    </div>
+                </div>
+            </div>
+        ));
+
+        return (
+            <div>
+                {/* Header */}
+                <header class="p-3 navbar1 navigation bg-dark">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
+                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
+                            {/* TODO Make search functional */}
+                            <input type="search" value={query} onChange={handleChange} class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
+                        </form>
+                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
+                    </div>
+                </header>
+                {/* Contents */}
+                <div class="container">
+                    <h1>Squishmallows</h1>
+                    <div>{listItems}</div>
+                </div>
+            </div>
+        );
+    }
     /*
      * The "Browse" view shows the items available for purchase.
      * Each item has an image, name, size, and price. The items also have
@@ -69,28 +160,7 @@ const Shop = () => {
             </div>
         ));
 
-        // plus button function
-        const addToCart = (el) => {
-            setCart([...cart, el]);
-            if(!checkoutCart.includes(el)){
-                setCheckoutCart([...checkoutCart, el]);
-            }
-        };
-
-        //minus button function
-        const removeFromCart = (el) => {
-            let itemFound = false;
-            const updatedCart = cart.filter((cartItem) => {
-            if (cartItem.id === el.id && !itemFound) {
-                itemFound = true;
-                return false;
-            }
-            return true;
-            });
-            if (itemFound) {
-            setCart(updatedCart);
-            }
-        };
+       
 
         // Browse view HTML
         return (
@@ -100,7 +170,7 @@ const Shop = () => {
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
                             {/* TODO Make search functional */}
-                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
+                            <input type="search" value={query} onChange={handleChange} class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
                         </form>
                         <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
                     </div>
@@ -486,6 +556,8 @@ const Shop = () => {
         return viewCart();
     } else if (view == 2) {
         return viewConfirmation();
+    } else if (view == 3) {
+        return viewFilteredSearch();
     } else {
         return (
             <div>

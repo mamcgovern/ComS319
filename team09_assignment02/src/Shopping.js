@@ -16,6 +16,7 @@ const Shop = () => {
     const [cartTotal, setCartTotal] = useState(0);
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const [cartTax, setCartTax] = useState(0);
+    const [checkoutCart, setCheckoutCart] = useState([]);
 
     // shipping info
     const [firstName, setFirstName] = useState("");
@@ -64,6 +65,9 @@ const Shop = () => {
         // plus button function
         const addToCart = (el) => {
             setCart([...cart, el]);
+            if(!checkoutCart.includes(el)){
+                setCheckoutCart([...checkoutCart, el]);
+            }
         };
 
         //minus button function
@@ -113,14 +117,25 @@ const Shop = () => {
     function viewCart() {
         // generates each item's HTML
         // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
-        const cartItems = cart.map((el) => (
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">{el.title}</h6>
-                    <small class="text-body-secondary">{el.category}</small>
+       const cartItems = checkoutCart.map((el) => (
+            <div class="row border-top border-bottom" key={el.id}>
+                <div class="row main align-items-center">
+                    <div class="col-2">
+                        <img class="img-fluid" src={el.image} width='150px' />
+                    </div>
+                    <div class="col">
+                        <div class="row text-muted">{el.title}</div>
+                        <div class="row">{el.category}</div>
+                    </div>
+                    {/* <div class="col">
+                        <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
+                        <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                    </div> */}
+                    <div class="col">
+                        ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+                    </div>
                 </div>
-                <span class="text-body-secondary">{el.price}</span>
-            </li>
+            </div>
         ));
 
         // function to update the stored first name

@@ -47,10 +47,11 @@ const Shop = () => {
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <div class="col">
                             <div class="card shadow-sm">
-                                <img class="img-fluid" src={el.image} width='150px' />
+                                <img class="img-fluid" src={el.image} width='180px' />
                                 <div class="card-body">
                                     <div class="col">
-                                        <div class=" text-muted">{el.title} &ensp; {el.category}</div><br/>
+                                        <div><strong>{el.title}</strong><br/> {el.category}</div><br/>
+                                        <div>${el.price}</div><br/>
                                     </div>
                                     <p class="card-text">{el.description}</p>
                                     <div class="d-flex justify-content-between align-items-center">
@@ -58,7 +59,7 @@ const Shop = () => {
                                             <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
                                             <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
                                         </div>
-                                        ${el.price} &ensp;&#10005;{howManyofThis(el.id)}
+                                            &ensp;&#10005;{howManyofThis(el.id)}
                                     </div>
                                 </div>
                             </div>

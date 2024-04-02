@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import items from "./Products.json";
 
 const Shop = () => {
-    // 0: browse view
-    // 1: cart view
-    // 2: confirmation view
+    /*
+     * 0: browse view
+     * 1: cart view
+     * 2: confirmation view
+     */
     const [view, setView] = useState(0);
 
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const [cartTax, setCartTax] = useState(0);
-
-    // function handleClick(){
-    //     let filtered = items.filter
-    // }
 
     function viewBrowse() {
         const listItems = items.map((el) => (
@@ -61,8 +59,10 @@ const Shop = () => {
                         <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
                     </div>
                 </header>
-                <h1>This is the Browse View</h1>
-                <div class="contents">{listItems}</div>
+                <div class="container">
+                    <h1>Browse</h1>
+                    <div>{listItems}</div>
+                </div>
             </div>
         );
     };
@@ -74,11 +74,19 @@ const Shop = () => {
 
     function viewCart() {
         const cartItems = cart.map((el) => (
-            <div key={el.id}>
-                <img class=
-                    "img-fluid" src={el.image} width={150} />
-                {el.title}
-                ${el.price}
+            <div class="row border-top border-bottom" key={el.id}>
+                <div class="row main align-items-center">
+                    <div class="col-2">
+                        <img class="img-fluid" src={el.image} width='150px' />
+                    </div>
+                    <div class="col">
+                        <div class="row text-muted">{el.title}</div>
+                        <div class="row">{el.category}</div>
+                    </div>
+                    <div class="col">
+                        ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+                    </div>
+                </div>
             </div>
         ));
 
@@ -94,14 +102,18 @@ const Shop = () => {
                     <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
                 </div>
             </header>
-            <div>
-                <h1>This is Cart View</h1>
-                <div>Items in Cart :</div>
-                <div>{cartItems}</div>
-                <hr/>
-                <div><strong>Subtotal:</strong> {cartSubtotal}</div>
-                <div><strong>Tax:</strong> {cartTax}</div>
-                <div><strong>Total:</strong> {cartTotal}</div>
+            <div class="container">
+                <div>
+                    <h1>Checkout</h1>
+                    <p><strong>Items:</strong></p>
+                    <p>{cartItems}</p>
+                    <p><strong>Subtotal:</strong> {cartSubtotal}</p>
+                    <p><strong>Tax:</strong> {cartTax}</p>
+                    <p><strong>Total:</strong> {cartTotal}</p>
+                </div>
+                <div>
+
+                </div>
             </div>
         </div>);
     };
@@ -129,13 +141,16 @@ const Shop = () => {
                         <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
                     </div>
                 </header>
-                <h1>Order Confirmation</h1>
-                <p>Thank you for your order!</p>
-                <p><strong>Items:</strong></p>
-                <div>{cartItems}</div>
-                <div><strong>Subtotal:</strong> {cartSubtotal}</div>
-                <div><strong>Tax:</strong> {cartTax}</div>
-                <div><strong>Total:</strong> {cartTotal}</div>
+                <div class="container">
+                    <h1>Order Confirmation</h1>
+                    <p>Thank you for your order!</p>
+                    <p><strong>Items:</strong></p>
+                    <div>{cartItems}</div>
+                    <hr />
+                    <p><strong>Subtotal:</strong> {cartSubtotal}</p>
+                    <p><strong>Tax:</strong> {cartTax}</p>
+                    <p><strong>Total:</strong> {cartTotal}</p>
+                </div>
             </div>);
     };
 

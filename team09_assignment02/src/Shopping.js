@@ -19,23 +19,23 @@ const Shop = () => {
     function viewBrowse() {
         const listItems = items.map((el) => (
             <div class="row border-top border-bottom" key={el.id}>
-            <div class="row main align-items-center">
-                <div class="col-2">
-                    <img class="img-fluid" src={el.image} width='150px'/>
-                </div>
-                <div class="col">
-                    <div class="row text-muted">{el.title}</div>
-                    <div class="row">{el.category}</div>
-                </div>
-                <div class="col">
-                    <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-                    <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
-                </div>
-                <div class="col">
-                    ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+                <div class="row main align-items-center">
+                    <div class="col-2">
+                        <img class="img-fluid" src={el.image} width='150px' />
+                    </div>
+                    <div class="col">
+                        <div class="row text-muted">{el.title}</div>
+                        <div class="row">{el.category}</div>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
+                        <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                    </div>
+                    <div class="col">
+                        ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
+                    </div>
                 </div>
             </div>
-        </div>
         ));
 
         const addToCart = (el) => {
@@ -50,24 +50,19 @@ const Shop = () => {
 
         return (
             <div>
-                <header class="p-3 navbar1 navigation">
+                <header class="p-3 navbar1 navigation bg-dark">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <button onClick={() => handleClick(0)}>Browse</button>
-                            <button onClick={() => handleClick(1)}>Cart</button>
-                            
+                            <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
                         </ul>
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
-                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
+                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
                         </form>
-                    </div>                   
+                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
+                    </div>
                 </header>
-
-                {/* <button onClick={() => handleClick(0)}>Browse</button>
-                <button onClick={() => handleClick(1)}>Cart</button>
-                <button onClick={() => handleClick(2)}>Confirmation</button> */}
                 <h1>This is the Browse View</h1>
-                <div>{listItems}</div>
+                <div class="contents">{listItems}</div>
             </div>
         );
     };
@@ -88,27 +83,26 @@ const Shop = () => {
         ));
 
         return (<div>
-                <header class="p-3 navbar1 navigation">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <button onClick={() => handleClick(0)}>Browse</button>
-                            <button onClick={() => handleClick(1)}>Cart</button>
-                            <button onClick={() => handleClick(2)}>Confirmation</button>                            
-                        </ul>
-                        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
-                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
-                        </form>
-                    </div>                   
-                </header>
-            {/* <button onClick={() => handleClick(0)}>Browse</button>
-            <button onClick={() => handleClick(1)}>Cart</button>
-            <button onClick={() => handleClick(2)}>Confirmation</button> */}
-            <h1>This is Cart View</h1>
-            <div>Items in Cart :</div>
-            <div>{cartItems}</div>
-            <div><strong>Subtotal:</strong> {cartSubtotal}</div>
-            <div><strong>Tax:</strong> {cartTax}</div>
-            <div><strong>Total:</strong> {cartTotal}</div>
+            <header class="p-3 navbar1 navigation bg-dark">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                    </ul>
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
+                        <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
+                    </form>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
+                </div>
+            </header>
+            <div>
+                <h1>This is Cart View</h1>
+                <div>Items in Cart :</div>
+                <div>{cartItems}</div>
+                <hr/>
+                <div><strong>Subtotal:</strong> {cartSubtotal}</div>
+                <div><strong>Tax:</strong> {cartTax}</div>
+                <div><strong>Total:</strong> {cartTotal}</div>
+            </div>
         </div>);
     };
 
@@ -121,30 +115,28 @@ const Shop = () => {
                 ${el.price}
             </div>
         ));
-        
-        return (<div className="bg-gray-100 p-4 text-purple-500">
-                <header class="p-3 navbar1 navigation">
+
+        return (
+            <div className="bg-gray-100 p-4 text-purple-500">
+                <header class="p-3 navbar1 navigation bg-dark">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <button onClick={() => handleClick(0)}>Browse</button>
-                            <button onClick={() => handleClick(1)}>Cart</button>
+                            <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
                         </ul>
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
-                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info"/>
+                            <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
                         </form>
-                    </div>                   
+                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
+                    </div>
                 </header>
-            <button onClick={() => handleClick(0)}>Browse</button>
-            <button onClick={() => handleClick(1)}>Cart</button>
-            <button onClick={() => handleClick(2)}>Confirmation</button>
-            <h1>Order Confirmation</h1>
-            <p>Thank you for your order!</p>
-            <p><strong>Items:</strong></p>
-            <div>{cartItems}</div>
-            <div><strong>Subtotal:</strong> {cartSubtotal}</div>
-            <div><strong>Tax:</strong> {cartTax}</div>
-            <div><strong>Total:</strong> {cartTotal}</div>
-        </div>);
+                <h1>Order Confirmation</h1>
+                <p>Thank you for your order!</p>
+                <p><strong>Items:</strong></p>
+                <div>{cartItems}</div>
+                <div><strong>Subtotal:</strong> {cartSubtotal}</div>
+                <div><strong>Tax:</strong> {cartTax}</div>
+                <div><strong>Total:</strong> {cartTotal}</div>
+            </div>);
     };
 
     const handleClick = (input) => {

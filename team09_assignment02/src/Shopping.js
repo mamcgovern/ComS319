@@ -462,9 +462,8 @@ const Shop = () => {
             totalVal += cart[i].price;
         }
         setCartSubtotal(totalVal.toFixed(2));
-        totalVal = (totalVal * 1.07).toFixed(2);
-        setCartTotal(totalVal);
-        setCartTax((cartTotal - cartSubtotal).toFixed(2));
+        setCartTotal((totalVal * 1.07).toFixed(2));
+        setCartTax((totalVal * 0.07).toFixed(2));
     };
 
     // function to get the quanity of this item in the cart by ID

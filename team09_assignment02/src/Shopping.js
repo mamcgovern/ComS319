@@ -68,9 +68,17 @@ const Shop = () => {
 
         //minus button function
         const removeFromCart = (el) => {
-            let hardCopy = [...cart];
-            hardCopy = hardCopy.filter((cartItem) => cartItem.id !== el.id);
-            setCart(hardCopy);
+            let itemFound = false;
+            const updatedCart = cart.filter((cartItem) => {
+            if (cartItem.id === el.id && !itemFound) {
+                itemFound = true;
+                return false;
+            }
+            return true;
+            });
+            if (itemFound) {
+            setCart(updatedCart);
+            }
         };
 
         // Browse view HTML

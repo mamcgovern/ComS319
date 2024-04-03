@@ -46,5 +46,37 @@
         "description": "He is the life of the party wherever he goes! Gideon has been all over the world and is full of stories from his travels. He’s wrestled a giant squid, climbed to the top of 'Mallow Mountain, and has eaten with a king and queen! Will you join Gideon on his next adventure?",
         "category": "7-inch",
         "image": "https://shop.jazwares.com/cdn/shop/files/SQCR00562-FRONT-lpr_1024x.jpg?v=1706564463"
+    },
+    {
+        "id": 7,
+        "title": "Squishmallows Clip-On Plush (5-pack)",
+        "price": 19.99,
+        "description": "Squish time is playtime when you add this plush to your Squishmallows Squad. This soft plush is perfect for backpacks, luggage, or link them all together! Clip your favorite ‘Mallow to your belt loop and let them hang with you all day! These loveable and squeezable Squishmallows are the softest and cutest plush toys around. Join the Squad!",
+        "category": "3.5-inch",
+        "image": "https://m.media-amazon.com/images/I/71LdIgXB+dL._AC_SX679_.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Scented Mystery Bag",
+        "price": 12.99,
+        "description": "Pop open a Squishmallows scented mystery bag and meet your new bestie! Each Squishmallow has its own unique name and bio found inside the hangtag. Which Squishmallows are you? Squeeze your Squishmallows anytime you need an energy boost, during a scary movie, or on a long flight.",
+        "category": "5-inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/SQCR05583-IP-3QRTL-lpr_900x.jpg?v=1707414394"
+    },
+    {
+        "id": 9,
+        "title": "Austin the Avocado",
+        "price": 24.99,
+        "description": "Austin loves drawing aliens and dreams of one day living in space! He loves pretending that he lives on the moon or is climbing rock mountains on Mars. Austin became obsessed with outer space in school after reading a book about aliens. Will you help Austin plan his next space adventure?",
+        "category": "16-inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/SQ20-16AV-Squishmallows-Austin-GreenAvocado-16inLargePlush-OP-Front-lpr_900x.jpg?v=1708635977"
+    },
+    {
+        "id": 10,
+        "title": "Wyatt the Frog",
+        "price": 15.99,
+        "description": "Wyatt loves shooting hoops at home with his big sister, Wendy! These two ‘Mallows play pickup basketball all the way until dinner time. This year, Wyatt became a mathlete, so playing a fun game is just what he needs to stay sharp in between competitions.",
+        "category": "12-inch",
+        "image": "https://shop.jazwares.com/cdn/shop/files/Vig_900x.jpg?v=1685565542"
     }
 ]

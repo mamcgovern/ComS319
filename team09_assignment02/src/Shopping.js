@@ -177,7 +177,7 @@ const Shop = () => {
                 </header>
                 {/* Contents */}
                 <div class="container">
-                    <h1>Browse</h1>
+                    <h1>Squishmallows</h1>
                     <div>{listItems}</div>
                 </div>
             </div>

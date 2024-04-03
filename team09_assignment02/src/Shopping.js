@@ -11,6 +11,9 @@ const Shop = () => {
      */
     const [view, setView] = useState(0);
 
+    const [ProductsCategory, setProductsCategory] = useState(items);
+    const [query, setQuery] = useState("");
+
     // cart info
     const [cart, setCart] = useState([]);
     const [cartTotal, setCartTotal] = useState(0);
@@ -133,9 +136,6 @@ const Shop = () => {
     function viewBrowse() {
         // generates each items HTML
         const listItems = items.map((el) => (
-            <div class="album py-5 bg-body-tertiary">
-                <div class="container">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <div class="col">
                             <div class="card shadow-sm">
                                 <img class="img-fluid" src={el.image} width='180px' />
@@ -155,9 +155,6 @@ const Shop = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         ));
 
        
@@ -178,7 +175,13 @@ const Shop = () => {
                 {/* Contents */}
                 <div class="container">
                     <h1>Squishmallows</h1>
-                    <div>{listItems}</div>
+                    <div class="album py-5 bg-body-tertiary">
+                        <div class="container">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                {listItems}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

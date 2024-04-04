@@ -251,15 +251,17 @@ const Shop = () => {
                                 </div>
                                 <div class="col-md-3">
                                     <div className="form-group">
-                                        <input {...register("zip", { required: true })} placeholder="Zip" className="form-control" />
+                                        <input {...register("zip", { required: true, pattern: /^[0-9]{5}$/ })} placeholder="Zip" className="form-control" />
                                         {errors.zip && <p className="text-danger">Zip is required.</p>}
                                     </div>
                                 </div>
                             </div>
+                            {/* Payment Information */}
+                            <h4 class="mb-3">Payment Information</h4>
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div className="form-group">
-                                        <input {...register("creditCard", { required: true })} placeholder="Credit Card Number" className="form-control" />
+                                        <input {...register("creditCard", { required: true, pattern: /^[0-9]+$/ })} placeholder="Credit Card Number" className="form-control" />
                                         {errors.creditCard && <p className="text-danger">Credit card number is required.</p>}
                                     </div>
                                 </div>
@@ -267,14 +269,14 @@ const Shop = () => {
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <div className="form-group">
-                                        <input {...register("expiration", { required: true })} placeholder="Expiration" className="form-control" />
-                                        {errors.expiration && <p className="text-danger">Expiration date is required.</p>}
+                                        <input {...register("expiration", { required: true, pattern: /^(0[1-9]|1[0-2])\/\d{2}$/ })} placeholder="MM/DD" className="form-control" />
+                                        {errors.expiration && <p className="text-danger">Expiration date must be in form MM/DD.</p>}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div className="form-group">
-                                        <input {...register("cvv", { required: true })} placeholder="CVV" className="form-control" />
-                                        {errors.cvv && <p className="text-danger">CVV is required.</p>}
+                                        <input {...register("cvv", { required: true, pattern: /^[0-9]+$/ })} placeholder="CVV" className="form-control" />
+                                        {errors.cvv && <p className="text-danger">CVV is required and can only be numbers.</p>}
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +343,7 @@ const Shop = () => {
                         <p><strong>{dataF.firstName} {dataF.lastName}</strong></p>
                         <p>{dataF.address}</p>
                         <p>{dataF.address2}</p>
-                        <p>{dataF.city}, {dataF.state} {dataF.zipcode}</p>
+                        <p>{dataF.city}, {dataF.state} {dataF.zip}</p>
                     </div>
                     <div>
                         <h2>Payment Information:</h2>

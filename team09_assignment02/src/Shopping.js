@@ -374,7 +374,6 @@ const Shop = () => {
 
     // function to continue browsing after going to the cart or making a purchase
     const continueBrowsing = () => {
-        //TODO clear inputs in the form
         // reset user info
         setDataF({});
         // reset cart info

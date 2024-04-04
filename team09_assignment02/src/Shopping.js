@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import items from "./Products.json";
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.css";
@@ -24,9 +24,10 @@ const Shop = () => {
     const [cartTax, setCartTax] = useState(0);
     const [checkoutCart, setCheckoutCart] = useState([]);
 
-    // user info
+    // form info
     const [dataF, setDataF] = useState("");
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const formRef = useRef(null);
 
 
 
@@ -79,7 +80,7 @@ const Shop = () => {
         const listItems = ProductsCategory.map((el) => (
             <div class="col">
                 <div class="card shadow-sm">
-                    <img class="img-fluid" src={el.image} width='180px' />
+                    <img class="img-fluid" alt="Product" src={el.image} width='180px' />
                     <div class="card-body">
                         <div class="col">
                             <div><strong>{el.title}</strong><br /> {el.category}</div><br />
@@ -97,8 +98,6 @@ const Shop = () => {
                 </div>
             </div>
         ));
-
-
 
         // Browse view HTML
         return (
@@ -140,7 +139,7 @@ const Shop = () => {
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col-2">
-                        <img class="img-fluid" src={el.image} width='150px' />
+                        <img class="img-fluid" alt="Product" src={el.image} width='150px' />
                     </div>
                     <div class="col">
                         <div class="row text-muted">{el.title}</div>
@@ -153,13 +152,21 @@ const Shop = () => {
             </div>
         ));
 
-        const onSubmit = data => {
+        const onSubmit = (data, event) => {
+            event.preventDefault(); // Prevent default form submission behavior
             console.log(data); // log all data
             console.log(data.fullName); // log only fullname
+
             // update hooks
-            setDataF(data)
+            setDataF(data);
             setView(2);
-        }
+
+            // TODO make this work to clear the form inputs
+            // Reset the form fields after a short delay
+            setTimeout(() => {
+                event.target.reset();
+            }, 100);
+        };
 
         // Cart view HTML
         return (<div>
@@ -196,7 +203,7 @@ const Shop = () => {
                         </ul>
                     </div>
                     <div class="col-md-7 col-lg-8">
-                        <form class="needs-validation" onSubmit={handleSubmit(onSubmit)}>
+                        <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(onSubmit)}>
                             {/* Shipping Information */}
                             <h4 class="mb-3">Shipping address</h4>
                             <div class="row g-3">
@@ -261,7 +268,7 @@ const Shop = () => {
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div className="form-group">
-                                        <input {...register("creditCard", { required: true,  pattern: /^\d{4}-\d{4}-\d{4}-\d{4}$/})} placeholder="" className="form-control" />
+                                        <input {...register("creditCard", { required: true, pattern: /^\d{4}-\d{4}-\d{4}-\d{4}$/ })} placeholder="" className="form-control" />
                                         {errors.creditCard && <p className="text-danger">Credit card number is required and must be in form xxxx-xxxx-xxxx-xxxx.</p>}
                                     </div>
                                 </div>
@@ -305,7 +312,7 @@ const Shop = () => {
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col-2">
-                        <img class="img-fluid" src={el.image} width='150px' />
+                        <img class="img-fluid" alt="Product" src={el.image} width='150px' />
                     </div>
                     <div class="col">
                         <div class="row text-muted">{el.title}</div>
@@ -403,11 +410,11 @@ const Shop = () => {
     }
 
     // return statements based on which view we want
-    if (view == 0) {
+    if (view === 0) {
         return viewBrowse();
-    } else if (view == 1) {
+    } else if (view === 1) {
         return viewCart();
-    } else if (view == 2) {
+    } else if (view === 2) {
         return viewConfirmation();
     } else {
         return (

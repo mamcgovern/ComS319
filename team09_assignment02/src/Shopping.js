@@ -13,6 +13,7 @@ const Shop = () => {
      */
     const [view, setView] = useState(0);
 
+    // search info
     const [ProductsCategory, setProductsCategory] = useState(items);
     const [query, setQuery] = useState("");
 
@@ -106,7 +107,6 @@ const Shop = () => {
                 <header class="p-3 navbar1 navigation bg-dark">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
                         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="searchResults.html">
-                            {/* TODO Make search functional */}
                             <input type="search" value={query} onChange={handleChange} class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search" name="info" id="info" />
                         </form>
                         <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Cart</button>
@@ -136,7 +136,6 @@ const Shop = () => {
      */
     function viewCart() {
         // generates each item's HTML
-        // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
         const cartItems = checkoutCart.map((el) => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
@@ -300,8 +299,7 @@ const Shop = () => {
      */
     function viewConfirmation() {
         // generates each item's HTML
-        // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
-        const cartItems = cart.map((el) => (
+        const cartItems = checkoutCart.map((el) => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col-2">
@@ -369,14 +367,10 @@ const Shop = () => {
     const continueBrowsing = () => {
         // reset user info
         setDataF({});
+        // reset cart info
+        setCart([]);
         // go to browse view
         setView(0);
-    }
-
-    // function to submit checkout form
-    const submitForm = () => {
-        setCart([]); // clears cart since the items were purchased
-        setView(2); // goes to the confirmation view
     }
 
     // function to change the view

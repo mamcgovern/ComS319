@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import items from "./Products.json";
+import { useForm } from "react-hook-form";
+import "bootstrap/dist/css/bootstrap.css";
 
 // TODO Create video
 
@@ -21,25 +23,16 @@ const Shop = () => {
     const [cartTax, setCartTax] = useState(0);
     const [checkoutCart, setCheckoutCart] = useState([]);
 
-    // shipping info
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [address1, setAddress1] = useState("");
-    const [address2, setAddress2] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [zipcode, setZipcode] = useState();
-
-    // payment info
-    const [cardName, setCardName] = useState("");
-    const [cardNumber, setCardNumber] = useState("");
+    // user info
+    const [dataF, setDataF] = useState("");
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
 
 
-     // plus button function
+    // plus button function
     const addToCart = (el) => {
         setCart([...cart, el]);
-        if(!checkoutCart.includes(el)){
+        if (!checkoutCart.includes(el)) {
             setCheckoutCart([...checkoutCart, el]);
         }
     };
@@ -48,30 +41,30 @@ const Shop = () => {
     const removeFromCart = (el) => {
         let itemFound = false;
         const updatedCart = cart.filter((cartItem) => {
-        if (cartItem.id === el.id && !itemFound) {
-            itemFound = true;
-            return false;
-        }
-        return true;
+            if (cartItem.id === el.id && !itemFound) {
+                itemFound = true;
+                return false;
+            }
+            return true;
         });
         if (itemFound) {
-        setCart(updatedCart);
+            setCart(updatedCart);
         }
     };
-    
+
     const handleChange = (e) => {
         let empty = false;
         setQuery(e.target.value);
         const results = items.filter((eachProduct) => {
-          if (e.target.value === ""){
-            empty = true
-            return ProductsCategory;
-          }
-          return eachProduct.title.toLowerCase().includes(e.target.value.toLowerCase());
+            if (e.target.value === "") {
+                empty = true
+                return ProductsCategory;
+            }
+            return eachProduct.title.toLowerCase().includes(e.target.value.toLowerCase());
         });
         setProductsCategory(results);
-      }; 
-    
+    };
+
     /*
      * The "Browse" view shows the items available for purchase.
      * Each item has an image, name, size, and price. The items also have
@@ -83,28 +76,28 @@ const Shop = () => {
     function viewBrowse() {
         // generates each items HTML
         const listItems = ProductsCategory.map((el) => (
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="img-fluid" src={el.image} width='180px' />
+                    <div class="card-body">
                         <div class="col">
-                            <div class="card shadow-sm">
-                                <img class="img-fluid" src={el.image} width='180px' />
-                                <div class="card-body">
-                                    <div class="col">
-                                        <div><strong>{el.title}</strong><br/> {el.category}</div><br/>
-                                        <div>${el.price}</div><br/>
-                                    </div>
-                                    <p class="card-text">{el.description}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-                                            <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
-                                        </div>
-                                            &ensp;&#10005;{howManyofThis(el.id)}
-                                    </div>
-                                </div>
-                            </div>
+                            <div><strong>{el.title}</strong><br /> {el.category}</div><br />
+                            <div>${el.price}</div><br />
                         </div>
+                        <p class="card-text">{el.description}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
+                                <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+                            </div>
+                            &ensp;&#10005;{howManyofThis(el.id)}
+                        </div>
+                    </div>
+                </div>
+            </div>
         ));
 
-       
+
 
         // Browse view HTML
         return (
@@ -144,7 +137,7 @@ const Shop = () => {
     function viewCart() {
         // generates each item's HTML
         // TODO Change so the function doesn't allow duplicates, but instead uses the howManyofThis function
-       const cartItems = checkoutCart.map((el) => (
+        const cartItems = checkoutCart.map((el) => (
             <div class="row border-top border-bottom" key={el.id}>
                 <div class="row main align-items-center">
                     <div class="col-2">
@@ -154,10 +147,6 @@ const Shop = () => {
                         <div class="row text-muted">{el.title}</div>
                         <div class="row">{el.category}</div>
                     </div>
-                    {/* <div class="col">
-                        <button class="btn btn-secondary" type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-                        <button class="btn btn-primary" type="button" variant="light" onClick={() => addToCart(el)}> + </button>
-                    </div> */}
                     <div class="col">
                         ${el.price} <span class="close">&#10005;</span>{howManyofThis(el.id)}
                     </div>
@@ -165,50 +154,13 @@ const Shop = () => {
             </div>
         ));
 
-        // function to update the stored first name
-        const handleFirstNameChange = (event) => {
-            setFirstName(event.target.value);
-        };
-
-        // function to update the stored last name
-        const handleLastNameChange = (event) => {
-            setLastName(event.target.value);
-        };
-
-        // function to update the stored address
-        const handleAddress1Change = (event) => {
-            setAddress1(event.target.value);
-        };
-
-        // function to update the stored address2
-        const handleAddress2Change = (event) => {
-            setAddress2(event.target.value);
-        };
-
-        // function to update the stored city
-        const handleCityChange = (event) => {
-            setCity(event.target.value);
-        };
-
-        // function to update the stored state
-        const handleStateChange = (event) => {
-            setState(event.target.value);
-        };
-
-        // function to update the stored zipcode
-        const handleZipcodeChange = (event) => {
-            setZipcode(event.target.value);
-        };
-
-        // function to update the stored card name
-        const handleCardNameChange = (event) => {
-            setCardName(event.target.value);
-        };
-
-        // function to update the stored card number
-        const handleCardNumberChange = (event) => {
-            setCardNumber(event.target.value);
-        };
+        const onSubmit = data => {
+            console.log(data); // log all data
+            console.log(data.fullName); // log only fullname
+            // update hooks
+            setDataF(data)
+            setView(2);
+        }
 
         // Cart view HTML
         return (<div>
@@ -221,9 +173,9 @@ const Shop = () => {
                 </div>
             </header>
             {/* Content */}
-            {/* TODO validate inputs */}
             <div class="container">
                 <div class="row g-5">
+                    {/* Cost Information */}
                     <div class="col-md-5 col-lg-4 order-md-last">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-primary">Your cart</span>
@@ -245,115 +197,93 @@ const Shop = () => {
                         </ul>
                     </div>
                     <div class="col-md-7 col-lg-8">
-                        <form class="needs-validation" novalidate>
-
+                        <form class="needs-validation" onSubmit={handleSubmit(onSubmit)}>
                             {/* Shipping Information */}
                             <h4 class="mb-3">Shipping address</h4>
                             <div class="row g-3">
                                 <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">First name</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" onChange={handleFirstNameChange} required />
-                                    <div class="invalid-feedback">
-                                        Valid first name is required.
+                                    <div className="form-group">
+                                        <input {...register("firstName", { required: true })} placeholder="First Name" className="form-control" />
+                                        {errors.firstName && <p className="text-danger">First Name is required.</p>}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Last name</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" onChange={handleLastNameChange} required />
-                                    <div class="invalid-feedback">
-                                        Valid last name is required.
+                                    <div className="form-group">
+                                        <input {...register("lastName", { required: true })} placeholder="Last Name" className="form-control" />
+                                        {errors.lastName && <p className="text-danger">Last Name is required.</p>}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address for shipping updates.
+                                    <div className="form-group">
+                                        <input {...register("email", { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" className="form-control" />
+                                        {errors.email && <p className="text-danger">Email is required.</p>}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" onChange={handleAddress1Change} required />
-                                    <div class="invalid-feedback">
-                                        Please enter your shipping address.
+                                    <div className="form-group">
+                                        <input {...register("address", { required: true })} placeholder="Address" className="form-control" />
+                                        {errors.address && <p className="text-danger">Address is required.</p>}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row g-3">
                                 <div class="col-12">
-                                    <label for="address2" class="form-label">Address 2 <span
-                                        class="text-body-secondary">(Optional)</span></label>
-                                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" onChange={handleAddress2Change} />
+                                    <div className="form-group">
+                                        <input {...register("address2")} placeholder="Address 2" className="form-control" />
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row g-3">
                                 <div class="col-md-5">
-                                    <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" placeholder="" onChange={handleCityChange} required />
-                                    <div class="invalid-feedback">
-                                        Please enter your city.
+                                    <div className="form-group">
+                                        <input {...register("city", { required: true })} placeholder="City" className="form-control" />
+                                        {errors.city && <p className="text-danger">City is required.</p>}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="state" class="form-label">State</label>
-                                    <select class="form-select" id="state" onChange={handleStateChange} required>
-                                        <option value="">Choose...</option>
-                                        <option>Iowa</option>
-                                        <option>Wisconsin</option>
-                                        <option>Illinois</option>
-                                        <option>Minnesota</option>
-                                        <option>North Dakota</option>
-                                        <option>South Dakota</option>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please provide a valid state.
+                                    <div className="form-group">
+                                        <input {...register("state", { required: true })} placeholder="State" className="form-control" />
+                                        {errors.state && <p className="text-danger">State is required.</p>}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="zip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" onChange={handleZipcodeChange} required />
-                                    <div class="invalid-feedback">
-                                        Zip code required.
+                                    <div className="form-group">
+                                        <input {...register("zip", { required: true })} placeholder="Zip" className="form-control" />
+                                        {errors.zip && <p className="text-danger">Zip is required.</p>}
                                     </div>
                                 </div>
                             </div>
-
-                            <hr class="my-4" />
-
-                            {/* Payment Information */}
-                            <h4 class="mb-3">Payment</h4>
-                            <div class="row gy-3">
-                                <div class="col-md-6">
-                                    <label for="cc-name" class="form-label">Name on card</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" onChange={handleCardNameChange} required />
-                                    <small class="text-body-secondary">Full name as displayed on card</small>
-                                    <div class="invalid-feedback">
-                                        Name on card is required
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="cc-number" class="form-label">Credit card number</label>
-                                    <input type="text" class="form-control" id="cc-number" placeholder="" onChange={handleCardNumberChange} required />
-                                    <div class="invalid-feedback">
-                                        Credit card number is required
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="cc-expiration" class="form-label">Expiration</label>
-                                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required />
-                                    <div class="invalid-feedback">
-                                        Expiration date required
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="cc-cvv" class="form-label">CVV</label>
-                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required />
-                                    <div class="invalid-feedback">
-                                        Security code required
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div className="form-group">
+                                        <input {...register("creditCard", { required: true })} placeholder="Credit Card Number" className="form-control" />
+                                        {errors.creditCard && <p className="text-danger">Credit card number is required.</p>}
                                     </div>
                                 </div>
                             </div>
-
-                            <hr class="my-4" />
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div className="form-group">
+                                        <input {...register("expiration", { required: true })} placeholder="Expiration" className="form-control" />
+                                        {errors.expiration && <p className="text-danger">Expiration date is required.</p>}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div className="form-group">
+                                        <input {...register("cvv", { required: true })} placeholder="CVV" className="form-control" />
+                                        {errors.cvv && <p className="text-danger">CVV is required.</p>}
+                                    </div>
+                                </div>
+                            </div>
 
                             {/* Submit Button */}
-                            <button class="w-100 btn btn-primary btn-lg" type="submit" onClick={() => submitForm()}>Order</button>
+                            <div class="row g-3">
+                                <button class="w-100 btn btn-primary btn-lg" type="submit">Order</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -390,26 +320,8 @@ const Shop = () => {
 
         // function to redact the first 12 digist of the card number
         const redactedCardNumber = () => {
-            return "XXXX-XXXX-XXXX-" + cardNumber.slice(-4);
+            return "XXXX-XXXX-XXXX-" + dataF.creditCard.slice(-4);
         };
-
-        // function to format the user's shipping address
-        const address = () => {
-            if (address2 == "") {
-                return (<p>
-                    {firstName} {lastName} <br />
-                    {address1}<br />
-                    {city}, {state} {zipcode}
-                </p>);
-            } else {
-                return (<p>
-                    {firstName} {lastName} <br />
-                    {address1}<br />
-                    {address2}<br />
-                    {city}, {state} {zipcode}
-                </p>);
-            }
-        }
 
         // Confirmation view HTML
         return (
@@ -428,12 +340,14 @@ const Shop = () => {
                     <p>Thank you for your order!</p>
                     <div>
                         <h2>Shipping Information:</h2>
-                        {address()}
+                        <p><strong>{dataF.firstName} {dataF.lastName}</strong></p>
+                        <p>{dataF.address}</p>
+                        <p>{dataF.address2}</p>
+                        <p>{dataF.city}, {dataF.state} {dataF.zipcode}</p>
                     </div>
                     <div>
                         <h2>Payment Information:</h2>
                         <p>
-                            <strong>Name on card:</strong> {cardName}<br />
                             <strong>Card number:</strong> {redactedCardNumber()}
                         </p>
                     </div>
@@ -454,15 +368,7 @@ const Shop = () => {
     // function to continue browsing after going to the cart or making a purchase
     const continueBrowsing = () => {
         // reset user info
-        setFirstName("");
-        setLastName("");
-        setAddress1("");
-        setAddress2("");
-        setCity("");
-        setState("");
-        setZipcode("");
-        setCardName("");
-        setCardNumber();
+        setDataF({});
         // go to browse view
         setView(0);
     }

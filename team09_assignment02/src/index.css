@@ -5,3 +5,8 @@
 .container {
     margin: 5px;
 }
+
+.row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

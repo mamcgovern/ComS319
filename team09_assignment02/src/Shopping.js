@@ -261,8 +261,8 @@ const Shop = () => {
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div className="form-group">
-                                        <input {...register("creditCard", { required: true, pattern: /^[0-9]+$/ })} placeholder="Credit Card Number" className="form-control" />
-                                        {errors.creditCard && <p className="text-danger">Credit card number is required.</p>}
+                                        <input {...register("creditCard", { required: true,  pattern: /^\d{4}-\d{4}-\d{4}-\d{4}$/})} placeholder="" className="form-control" />
+                                        {errors.creditCard && <p className="text-danger">Credit card number is required and must be in form xxxx-xxxx-xxxx-xxxx.</p>}
                                     </div>
                                 </div>
                             </div>
@@ -367,6 +367,7 @@ const Shop = () => {
 
     // function to continue browsing after going to the cart or making a purchase
     const continueBrowsing = () => {
+        //TODO clear inputs in the form
         // reset user info
         setDataF({});
         // reset cart info

@@ -26,7 +26,7 @@ const Shop = () => {
 
     // form info
     const [dataF, setDataF] = useState("");
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, unregister } = useForm();
     const formRef = useRef(null);
 
 
@@ -55,11 +55,11 @@ const Shop = () => {
     };
 
     const handleChange = (e) => {
-        let empty = false;
+        // let empty = false;
         setQuery(e.target.value);
         const results = items.filter((eachProduct) => {
             if (e.target.value === "") {
-                empty = true
+                // empty = true
                 return ProductsCategory;
             }
             return eachProduct.title.toLowerCase().includes(e.target.value.toLowerCase());
@@ -268,7 +268,7 @@ const Shop = () => {
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div className="form-group">
-                                        <input {...register("creditCard", { required: true, pattern: /^\d{4}-\d{4}-\d{4}-\d{4}$/ })} placeholder="" className="form-control" />
+                                        <input {...register("creditCard", { required: true, pattern: /^\d{4}-\d{4}-\d{4}-\d{4}$/ })} placeholder="Credit Card" className="form-control" />
                                         {errors.creditCard && <p className="text-danger">Credit card number is required and must be in form xxxx-xxxx-xxxx-xxxx.</p>}
                                     </div>
                                 </div>
@@ -375,12 +375,25 @@ const Shop = () => {
     // function to continue browsing after going to the cart or making a purchase
     const continueBrowsing = () => {
         // reset user info
+        unregister("firstName");
+        unregister("lastName");
+        unregister("email");
+        unregister("address");
+        unregister("address2");
+        unregister("city");
+        unregister("state");
+        unregister("zip");
+        unregister("creditCard");
+        unregister("expiration");
+        unregister("cvv");
         setDataF({});
         // reset cart info
         setCart([]);
+        setCheckoutCart([])
         // go to browse view
         setView(0);
     }
+    
 
     // function to change the view
     const handleClick = (input) => {

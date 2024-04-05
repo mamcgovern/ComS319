@@ -3,7 +3,6 @@ import items from "./Products.json";
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.css";
 
-// TODO Create video
 
 const Shop = () => {
     /*
@@ -55,11 +54,9 @@ const Shop = () => {
     };
 
     const handleChange = (e) => {
-        // let empty = false;
         setQuery(e.target.value);
         const results = items.filter((eachProduct) => {
             if (e.target.value === "") {
-                // empty = true
                 return ProductsCategory;
             }
             return eachProduct.title.toLowerCase().includes(e.target.value.toLowerCase());
@@ -161,7 +158,6 @@ const Shop = () => {
             setDataF(data);
             setView(2);
 
-            // TODO make this work to clear the form inputs
             // Reset the form fields after a short delay
             setTimeout(() => {
                 event.target.reset();

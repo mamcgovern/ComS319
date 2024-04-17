@@ -15,6 +15,31 @@ const Shop = () => {
     function viewBrowse() {
         return (
             <div>
+                {/* Header */}
+                <header data-bs-theme="dark">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Update Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>Delete Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>About</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -29,6 +54,31 @@ const Shop = () => {
     function viewUpdate() {
         return (
             <div>
+                {/* Header */}
+                <header data-bs-theme="dark">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Update Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>Delete Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>About</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -43,6 +93,31 @@ const Shop = () => {
     function viewDelete() {
         return (
             <div>
+                {/* Header */}
+                <header data-bs-theme="dark">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Update Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>Delete Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>About</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -57,10 +132,37 @@ const Shop = () => {
     function viewStudents() {
         return (
             <div>
+                {/* Header */}
+                <header data-bs-theme="dark">
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+                        <div class="container-fluid">
+                            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Update Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>Delete Item</button>
+                                    </li>
+                                    <li class="nav-item" style={{ margin: '5px' }}>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>About</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+
+                {/* Title */}
                 <section>
-                <h1 style={{ textAlign: 'center' }}>About</h1>
+                    <h1 style={{ textAlign: 'center' }}>About</h1>
                 </section>
 
+                {/* Content */}
                 <section>
                     <div class="container">
                         <h2>Class Information</h2>
@@ -75,7 +177,7 @@ const Shop = () => {
                         <h2>Project Description</h2>
                         <p class="title">Assignment 3</p>
                         {/* TODO add description */}
-                        <p>Description goes here</p> 
+                        <p>Description goes here</p>
                     </div>
                 </section>
 
@@ -119,6 +221,11 @@ const Shop = () => {
             </div>
         );
     }
+
+    // function to change the view
+    const handleClick = (input) => {
+        setView(input);
+    };
 
     // return statements based on which view we want
     if (view === 0) {

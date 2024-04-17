@@ -17,3 +17,7 @@ p.title {
       Courier, monospace;
   color: brown;
 }
+
+.btn {
+  margin: 5 px;
+}

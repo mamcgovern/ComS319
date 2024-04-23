@@ -3,16 +3,38 @@ import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.css";
 
 
-const Shop = () => {
+const Products = () => {
     /*
      * 0: browse view
      * 1: update view
      * 2: delete view
      * 3: student view
      */
-    const [view, setView] = useState(3);
+    const [products, setProducts] = useState([]);
+    const [view, setView] = useState(0);
 
-    function viewBrowse() {
+    useEffect(() => {
+  fetch("http://localhost:8081/listProducts")
+  .then(response => response.json())
+  .then(products => {
+    setProducts(products);
+  })
+}, []);
+    function showAllProducts() {
+        const allProducts = products.map((el) => (
+    <div class="row border-top border-bottom" key={el.id}>
+    <div class="row main align-items-center">
+        <div class="col-2">
+            <img class="img-fluid" src={el.image} width='150px'/>
+        </div>
+        <div class="col">
+            <div class="row text-muted">{el.title}</div>
+            <div class="row">{el.category}</div>
+            <div class="row">{el.price}</div>
+        </div>
+    </div>
+</div>
+));
         return (
             <div>
                 {/* Header */}
@@ -23,7 +45,7 @@ const Shop = () => {
                                 <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
                                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
                                     <li class="nav-item" style={{ margin: '5px' }}>
-                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Browse</button>
+                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
                                     </li>
                                     <li class="nav-item" style={{ margin: '5px' }}>
                                         <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(1)}>Update Item</button>
@@ -39,11 +61,14 @@ const Shop = () => {
                         </div>
                     </nav>
                 </header>
-
+                
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="display-4">Browse</h1>
+                            <h1 class="display-4">Products</h1>
+                        </div>
+                        <div>
+                           <div>{allProducts}</div>
                         </div>
                     </div>
                 </div>
@@ -229,7 +254,7 @@ const Shop = () => {
 
     // return statements based on which view we want
     if (view === 0) {
-        return viewBrowse();
+        return showAllProducts();
     } else if (view === 1) {
         return viewUpdate();
     } else if (view === 2) {
@@ -255,4 +280,4 @@ const Shop = () => {
     }
 
 }
-export default Shop;
+export default Products;

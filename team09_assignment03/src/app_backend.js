@@ -45,3 +45,22 @@ app.get("/:id", async (req, res) => {
     else res.send(results).status(200);
     
     });
+
+app.delete("/deleteProduct/:id", async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        await client.connect();
+        // console.log("Robot to delete :",id);
+        const query = { id: id };
+        // delete
+        const results = await db.collection("fakestore_catalog").deleteOne(query);
+        res.status(200);
+        res.send(results);
+    }
+    catch (error){
+        console.error("Error deleting product:", error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});
+
+

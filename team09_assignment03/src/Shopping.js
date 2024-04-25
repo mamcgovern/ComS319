@@ -67,6 +67,8 @@ function showAllProducts() {
             <div class="row text-muted">{el.title}</div>
             <div class="row">{el.category}</div>
             <div class="row">{el.price}</div>
+            <div class="row">{el.rating.count} Ratings</div>
+            <div class="row">Rate: {el.rating.rate}</div>
         </div>
     </div>
 </div>
@@ -140,6 +142,7 @@ function showOneProduct() {
         <div class="card-body">
             <p class="card-text">{product.id} <strong>{product.title}</strong> {product.price}</p>
             <p class="card-text">{product.description}</p>
+            <p class="card-text">Ratings: {product.rating.count}, Rate: {product.rating.rate}</p>
             <div class="d-flex justify-content-between align-items-center">
             </div>
         </div>

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.css";
 
 
@@ -10,8 +11,28 @@ function Products(){
   const [id, setInput] = useState();
   const [price, setPrice] = useState(0);
 
+  const [dataF, setDataF] = useState("");
+  const { register, handleSubmit, formState: { errors }, unregister } = useForm();
+  const formRef = useRef(null);
 
 
+  const onSubmit = (data, event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // update hooks
+    setDataF(data);
+    setView(0);
+    unregister("id");
+    unregister("title");
+    unregister("price");
+    unregister("description");
+    unregister("category");
+    unregister("image");
+    unregister("rating");
+    
+    setDataF({});
+  
+};
 
 function handleClick(input) {
   setView(input);
@@ -63,6 +84,9 @@ function showAllProducts() {
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
               </li>
               <li class="nav-item" style={{ margin: '5px' }}>
+                  <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
+              </li>
+              <li class="nav-item" style={{ margin: '5px' }}>
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
               </li>
             </ul>
@@ -71,7 +95,8 @@ function showAllProducts() {
           </div>
         </div>
       </nav>
-    </header>
+    </header> 
+    <h1>Products:</h1><br/>
    <div>{allProducts}</div>
     
     </div>
@@ -96,6 +121,9 @@ function showOneProduct() {
             <ul class="navbar-nav col-lg-6 justify-content-lg-center">
               <li class="nav-item" style={{ margin: '5px' }}>
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
+              </li>
+              <li class="nav-item" style={{ margin: '5px' }}>
+                  <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
               </li>
               <li class="nav-item" style={{ margin: '5px' }}>
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
@@ -126,7 +154,6 @@ function showOneProduct() {
     </div>
     )
   }
- 
   
   function deleteProduct() {
     fetch(`http://localhost:8081/deleteProduct/${id}`, {
@@ -143,6 +170,103 @@ function showOneProduct() {
 }
 
 
+function addProduct(){
+  return(
+    <div>
+   {/* Header */}
+   <header data-bs-theme="dark">
+   <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+     <div class="container-fluid">
+       <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+         <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+         <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+           <li class="nav-item" style={{ margin: '5px' }}>
+               <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
+           </li>
+           <li class="nav-item" style={{ margin: '5px' }}>
+               <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
+           </li>
+           <li class="nav-item" style={{ margin: '5px' }}>
+               <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
+           </li>
+         </ul>
+         <input type="text" placeholder="Enter Product ID"  onChange={(e) => getOneProduct(e.target.value)}/> 
+         <button className="btn btn-primary" type="button" variant="light" onClick={() => handleClick(1)}>Find Product</button>
+       </div>
+     </div>
+   </nav>
+ </header> <br/>
+
+
+  <div class="col-md-7 col-lg-8">
+  <form class="needs-validation"  ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+      {/* Product Information */}
+      <h4 class="mb-3">Add Product</h4>
+      <div class="row g-3">
+          <div class="col-sm-6">
+              <div className="form-group">
+                  <input {...register("id", { required: true })} placeholder="ID" className="form-control" />
+                  {errors.id && <p className="text-danger">id is required.</p>}
+              </div>
+          </div> 
+          <div class="col-sm-6">
+              <div className="form-group">
+                  <input {...register("title", { required: true })} placeholder="Title" className="form-control" />
+                  {errors.title && <p className="text-danger">Title is required.</p>}
+              </div>
+          </div>
+      </div><br/>
+      <div class="row g-3">
+          <div class="col-12">
+              <div className="form-group">
+                  <input {...register("price", { required: true })} placeholder="Price" className="form-control" />
+                  {errors.price && <p className="text-danger">price is required.</p>}
+              </div>
+          </div>
+      </div><br/>
+      <div class="row g-3">
+          <div class="col-12">
+              <div className="form-group">
+                  <input {...register("description", { required: true })} placeholder="Description" className="form-control" />
+                  {errors.description && <p className="text-danger">Description is required.</p>}
+              </div>
+          </div>
+      </div><br/>
+      <div class="row g-3">
+          <div class="col-12">
+              <div className="form-group">
+                  <input {...register("category", {required: true})} placeholder="Category" className="form-control" />
+                  {errors.category && <p className="text-danger">Category is required.</p>}
+              </div>
+          </div>
+      </div><br/>
+      <div class="row g-3">
+          <div class="col-md-5">
+              <div className="form-group">
+                  <input {...register("image", { required: true })} placeholder="Image URL" className="form-control" />
+                  {errors.image && <p className="text-danger">Image is required.</p>}
+              </div>
+          </div><br/>
+          <div class="col-md-4">
+              <div className="form-group">
+                  <input {...register("rating")} placeholder="Rating" className="form-control" />
+              </div>
+          </div>
+      </div><br/>
+
+      {/* Submit Button */}
+      <div class="row g-3">
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+      </div>
+  </form>
+</div>
+</div>);
+
+
+
+}
+
+
 function viewStudents() {
   return (
       <div>
@@ -155,6 +279,9 @@ function viewStudents() {
             <ul class="navbar-nav col-lg-6 justify-content-lg-center">
               <li class="nav-item" style={{ margin: '5px' }}>
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
+              </li>
+              <li class="nav-item" style={{ margin: '5px' }}>
+                  <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
               </li>
               <li class="nav-item" style={{ margin: '5px' }}>
                   <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
@@ -240,13 +367,13 @@ if (view == 0) {
 } 
 else if (view == 2) {
   return viewStudents();
+} else if (view == 3) {
+  return addProduct();
 }
 else {
   return (<div>
     <button onClick={() => handleClick(0)}>All Products</button>
-    <button onClick={() => handleClick(2)}>Update Price</button>
-    <button onClick={() => handleClick(3)}>Delete Product</button>
-    <button onClick={() => handleClick(4)}>About</button>
+    <button onClick={() => handleClick(2)}>About</button>
   </div>);
 }
 }

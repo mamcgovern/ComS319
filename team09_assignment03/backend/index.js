@@ -80,7 +80,7 @@ app.post("/addProduct", async (req, res) => {
             "price": values[2],
             "description": values[3],
             "category": values[4],
-            "imageUrl": values[5],
+            "image": values[5],
             "rating": values[6]
         };
         console.log(newDocument);

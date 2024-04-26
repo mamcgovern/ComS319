@@ -133,11 +133,8 @@ function Products() {
             </div>
           </div>
           <div>
-            <input type="number" placeholder="Enter Price" value={price} onChange={(e) => setPrice(parseFloat(e.target.value))} />
-            <button type="button" onClick={() => updateProduct()}>Update Price</button>
-          </div>
-          <div>
-            <button type="button" onClick={() => deleteProduct()}>Delete Product</button>
+            <button type="button" onClick={() => handleClick(4)}>Update Price</button>
+            <button type="button" onClick={() => handleClick(5)}>Delete Product</button>
           </div>
         </div>
       </div>
@@ -156,6 +153,124 @@ function Products() {
   }
 
   /*
+   * This view shows more information about a product.
+   * This is also the view where users can update a products price.
+   */
+  function updateView() {
+    return (
+      <div>
+        <header data-bs-theme="dark">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
+                  </li>
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
+                  </li>
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
+                  </li>
+                </ul>
+                <input type="text" placeholder="Enter Product ID" onChange={(e) => getOneProduct(e.target.value)} />
+                <button className="btn btn-primary" type="button" variant="light" onClick={() => handleClick(1)}>Find Product</button>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div class="container">
+          <h1>Update Product</h1>
+          <div class="card shadow-sm">
+            <img src={product.image} class="image-fluid" width='150px' alt="product picture"></img>
+            <div class="card-body">
+              <p class="card-text">{product.id} <strong>{product.title}</strong> {product.price}</p>
+              <p class="card-text">{product.description}</p>
+              <p class="card-text">Ratings: {product.rating.count}, Rate: {product.rating.rate}</p>
+              <div class="d-flex justify-content-between align-items-center">
+              </div>
+            </div>
+            <div>
+              <input type="number" placeholder="Enter Price" value={price} onChange={(e) => setPrice(parseFloat(e.target.value))} />
+              <button type="button" onClick={() => updateProduct()}>Update Price</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  /*
+ * This is the frontend method for updating a product's price
+ * (put request)
+ */
+  function updateProduct() {
+    console.log(id);
+    fetch(`http://localhost:8081/updateProduct/${id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(
+        {
+          "price": price
+        }
+      )
+    })
+      .then(response => response.json())
+    //.then(updateThisRobot => { updateOneRobotById(updateThisRobot) });
+  }
+
+  /*
+ * This view shows more information about a product.
+ * This is also the view where users can update a products price.
+ */
+  function deleteView() {
+    return (
+      <div>
+        <header data-bs-theme="dark">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navbar">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                <a class="navbar-brand col-lg-3 me-0" href="#">Store</a>
+                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(0)}>Products</button>
+                  </li>
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(3)}>Add Product</button>
+                  </li>
+                  <li class="nav-item" style={{ margin: '5px' }}>
+                    <button class="btn btn-primary rounded-pill px-3" onClick={() => handleClick(2)}>About</button>
+                  </li>
+                </ul>
+                <input type="text" placeholder="Enter Product ID" onChange={(e) => getOneProduct(e.target.value)} />
+                <button className="btn btn-primary" type="button" variant="light" onClick={() => handleClick(1)}>Find Product</button>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <div class="container">
+          <h1>Delete Product</h1>
+          <div class="card shadow-sm">
+            <img src={product.image} class="image-fluid" width='150px' alt="product picture"></img>
+            <div class="card-body">
+              <p class="card-text">{product.id} <strong>{product.title}</strong> {product.price}</p>
+              <p class="card-text">{product.description}</p>
+              <p class="card-text">Ratings: {product.rating.count}, Rate: {product.rating.rate}</p>
+              <div class="d-flex justify-content-between align-items-center">
+              </div>
+            </div>
+            <div>
+              <button type="button" onClick={() => deleteProduct()}>Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  /*
    * This is the frontend method for deleting a product
    * (delete request)
    */
@@ -171,25 +286,6 @@ function Products() {
       .then(res => getProducts())
 
     setView(0);
-  }
-
-  /*
-   * This is the frontend method for updating a product's price
-   * (put request)
-   */
-  function updateProduct() {
-    console.log(id);
-    fetch(`http://localhost:8081/updateProduct/${id}`, {
-      method: 'PUT',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(
-        {
-          "price": price
-        }
-      )
-    })
-      .then(response => response.json())
-    //.then(updateThisRobot => { updateOneRobotById(updateThisRobot) });
   }
 
   /*
@@ -346,9 +442,9 @@ function Products() {
       .catch(error => console.error('Error fetching product data:', error));
   }
 
- /*
-  * This view shows the about page, including information about the course, students, and assignment
-  */
+  /*
+   * This view shows the about page, including information about the course, students, and assignment
+   */
   function viewStudents() {
     return (
       <div>
@@ -445,6 +541,10 @@ function Products() {
     return viewStudents();
   } else if (view === 3) {
     return addProduct();
+  } else if (view === 4) {
+    return updateView();
+  } else if (view === 5) {
+    return deleteView();
   } else {
     return (<div>
       <button onClick={() => handleClick(0)}>All Products</button>

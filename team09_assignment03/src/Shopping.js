@@ -380,7 +380,6 @@ function Products() {
                   <div class="card-body">
                     <h3>Maddelynne McGovern</h3>
                     <p class="title">mrm4@iastate.edu</p>
-                    <p class="card-text">I am a senior double majoring in computer science and political science at Iowa State University.</p>
                   </div>
                 </div>
               </div>
@@ -390,7 +389,6 @@ function Products() {
                   <div class="card-body">
                     <h3>Jennifer Hua</h3>
                     <p class="title">jthua@iastate.edu</p>
-                    <p class="card-text">I am a sophomore majoring in Computer Science and minoring in Cyber Security at Iowa State University.</p>
                   </div>
                 </div>
               </div>
@@ -400,8 +398,6 @@ function Products() {
                   <div class="card-body">
                     <h3>Sagnik Dey</h3>
                     <p class="title">sdey@iastate.edu</p>
-                    {/* TODO add description */}
-                    <p class="card-text">Description</p>
                   </div>
                 </div>
               </div>

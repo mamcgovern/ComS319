@@ -364,8 +364,10 @@ function Products() {
           <div class="container">
             <h2>Project Description</h2>
             <p class="title">Assignment 3</p>
-            {/* TODO add description */}
-            <p>Description goes here</p>
+            <p>For this assignment, our team developed a MERN 
+              (MongoDB, Express, React, NodeJS) application for managing 
+              a catalog of items. The assignment allows users to view all 
+              items, search one item by ID, edit an items price, delete an item, and add new items.  </p>
           </div>
         </section>
 

@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.css";
 
-
-
 function Products() {
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState([]);
@@ -15,74 +13,16 @@ function Products() {
   const { register, handleSubmit, formState: { errors }, unregister } = useForm();
   const formRef = useRef(null);
 
-
-  const onSubmit = (data, event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    postProduct(data);
-
-    // update hooks
-    setDataF(data);
-    setView(0);
-    unregister("id");
-    unregister("title");
-    unregister("price");
-    unregister("description");
-    unregister("category");
-    unregister("image");
-    unregister("rating");
-
-    setDataF({});
-
-  };
-
-  function postProduct(data) {
-    const productData = {
-      id: parseInt(data.id),
-      title: data.title,
-      price: parseFloat(data.price),
-      description: data.description,
-      category: data.category,
-      image: data.image,
-      rating: {
-        rate: parseFloat(data.rating),
-        count: parseInt(data.count)
-      }
-    };
-
-    fetch('http://localhost:8081/addProduct', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(productData)
-    })
-      .then(response => response.json())
-      .then(responseData => {
-        console.log('Success:', responseData);
-      })
-      .catch(error => console.error('Error fetching product data:', error));
-  }
-
+  /*
+   * This method allows us to change our view.
+   */
   function handleClick(input) {
     setView(input);
   };
 
-  useEffect(() => {
-    fetch("http://localhost:8081/listProducts")
-      .then(response => response.json())
-      .then(products => {
-        setProducts(products);
-      })
-  }, []);
-
-  function getProducts() {
-    fetch("http://localhost:8081/listProducts")
-      .then(response => response.json())
-      .then(products => { setProducts(products) });
-  }
-
-
+  /*
+   * This view shows all of the products and some information about them.
+   */
   function showAllProducts() {
     const allProducts = products.map((el) => (
       <div class="row border-top border-bottom" key={el.id}>
@@ -127,18 +67,36 @@ function Products() {
         </header>
         <h1>Products:</h1><br />
         <div>{allProducts}</div>
-
       </div>
     );
   }
 
-  function getOneProduct(id) {
-    setInput(id);
-    fetch("http://localhost:8081/" + id)
+  /*
+   * This method updates the products array.
+   */
+  useEffect(() => {
+    fetch("http://localhost:8081/listProducts")
       .then(response => response.json())
-      .then(product => { setProduct(product) });
+      .then(products => {
+        setProducts(products);
+      })
+  }, []);
+
+  /*
+   * This is the frontend method for getting all of the products
+   * (get request)
+   */
+  function getProducts() {
+    fetch("http://localhost:8081/listProducts")
+      .then(response => response.json())
+      .then(products => { setProducts(products) });
   }
 
+  /*
+   * This view shows more information about a product.
+   * This is also the view where users can update a products price
+   * or delete a product.
+   */
   function showOneProduct() {
     return (
       <div>
@@ -164,6 +122,7 @@ function Products() {
             </div>
           </nav>
         </header>
+
         <div class="card shadow-sm">
           <img src={product.image} class="image-fluid" width='150px' alt="product picture"></img>
           <div class="card-body">
@@ -185,6 +144,21 @@ function Products() {
     )
   }
 
+  /*
+   * This is the frontend method for getting one product by ID
+   * (get request)
+   */
+  function getOneProduct(id) {
+    setInput(id);
+    fetch("http://localhost:8081/" + id)
+      .then(response => response.json())
+      .then(product => { setProduct(product) });
+  }
+
+  /*
+   * This is the frontend method for deleting a product
+   * (delete request)
+   */
   function deleteProduct() {
     fetch(`http://localhost:8081/deleteProduct/${id}`, {
       method: 'DELETE',
@@ -199,6 +173,10 @@ function Products() {
     setView(0);
   }
 
+  /*
+   * This is the frontend method for updating a product's price
+   * (put request)
+   */
   function updateProduct() {
     console.log(id);
     fetch(`http://localhost:8081/updateProduct/${id}`, {
@@ -211,10 +189,12 @@ function Products() {
       )
     })
       .then(response => response.json())
-      //.then(updateThisRobot => { updateOneRobotById(updateThisRobot) });
+    //.then(updateThisRobot => { updateOneRobotById(updateThisRobot) });
   }
 
-
+  /*
+   * This view shows the form for user's to add a new product
+   */
   function addProduct() {
     return (
       <div>
@@ -241,7 +221,6 @@ function Products() {
             </div>
           </nav>
         </header> <br />
-
 
         <div class="col-md-7 col-lg-8">
           <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(onSubmit)}>
@@ -303,8 +282,6 @@ function Products() {
                 </div>
               </div>
             </div><br />
-
-
             {/* Submit Button */}
             <div class="row g-3">
               <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
@@ -312,12 +289,66 @@ function Products() {
           </form>
         </div>
       </div>);
-
-
-
   }
 
+  /*
+   * Method for when the Add Product form is submitted
+   */
+  const onSubmit = (data, event) => {
+    event.preventDefault(); // Prevent default form submission behavior
 
+    postProduct(data);
+
+    // update hooks
+    setDataF(data);
+    setView(0);
+    unregister("id");
+    unregister("title");
+    unregister("price");
+    unregister("description");
+    unregister("category");
+    unregister("image");
+    unregister("rating");
+
+    setDataF({});
+  };
+
+  /*
+   * Frontend method to add a product 
+   * (post request)
+   */
+  function postProduct(data) {
+    // format the product data correctly
+    const productData = {
+      id: parseInt(data.id),
+      title: data.title,
+      price: parseFloat(data.price),
+      description: data.description,
+      category: data.category,
+      image: data.image,
+      rating: {
+        rate: parseFloat(data.rating),
+        count: parseInt(data.count)
+      }
+    };
+
+    fetch('http://localhost:8081/addProduct', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productData)
+    })
+      .then(response => response.json())
+      .then(responseData => {
+        console.log('Success:', responseData);
+      })
+      .catch(error => console.error('Error fetching product data:', error));
+  }
+
+ /*
+  * This view shows the about page, including information about the course, students, and assignment
+  */
   function viewStudents() {
     return (
       <div>
@@ -349,7 +380,6 @@ function Products() {
         <section>
           <h1 style={{ textAlign: 'center' }}>About</h1>
         </section>
-
         {/* Content */}
         <section>
           <div class="container">
@@ -359,18 +389,16 @@ function Products() {
             <p>April 27, 2024</p>
           </div>
         </section>
-
         <section>
           <div class="container">
             <h2>Project Description</h2>
             <p class="title">Assignment 3</p>
-            <p>For this assignment, our team developed a MERN 
-              (MongoDB, Express, React, NodeJS) application for managing 
-              a catalog of items. The assignment allows users to view all 
+            <p>For this assignment, our team developed a MERN
+              (MongoDB, Express, React, NodeJS) application for managing
+              a catalog of items. The assignment allows users to view all
               items, search one item by ID, edit an items price, delete an item, and add new items.  </p>
           </div>
         </section>
-
         <div class="album py-5 bg-body-tertiary">
           <div class="container">
             <h2>Developers:</h2>
@@ -383,7 +411,6 @@ function Products() {
                   </div>
                 </div>
               </div>
-
               <div class="col">
                 <div class="card shadow-sm">
                   <div class="card-body">
@@ -392,7 +419,6 @@ function Products() {
                   </div>
                 </div>
               </div>
-
               <div class="col">
                 <div class="card shadow-sm">
                   <div class="card-body">
@@ -408,7 +434,9 @@ function Products() {
     );
   }
 
-
+  /*
+   * This if/else statement sets the view.
+   */
   if (view === 0) {
     return showAllProducts();
   } else if (view === 1) {

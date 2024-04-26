@@ -20,6 +20,7 @@ app.listen(port, () => {
     console.log("App listening at http://%s:%s", host, port);
 });
 
+// Get request: all products
 app.get("/listProducts", async (req, res) => {
     await client.connect();
     console.log("Node connected successfully to GET MongoDB");
@@ -34,6 +35,7 @@ app.get("/listProducts", async (req, res) => {
     res.send(results);
     });
 
+// Get request: by ID
 app.get("/:id", async (req, res) => {
     const productid = Number(req.params.id);
     await client.connect();
@@ -47,6 +49,7 @@ app.get("/:id", async (req, res) => {
     
     });
 
+// Delete request: by ID
 app.delete("/deleteProduct/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
@@ -93,7 +96,7 @@ app.post("/addProduct", async (req, res) => {
     }
 });
 
-//update
+// Update product: by ID
 app.put("/updateProduct/:id", async (req, res) => {
     const id = Number(req.params.id);
     const query = { id: id };

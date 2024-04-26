@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 
 const port = "8081";
 const host = "localhost";
+const { MongoClient } = require("mongodb");
 
 const url = "mongodb://127.0.0.1:27017";
 const dbName = "reactdata";
@@ -63,4 +64,31 @@ app.delete("/deleteProduct/:id", async (req, res) => {
     }
 });
 
+// Post product
+app.post("/addProduct", async (req, res) => {
+    try {
+        await client.connect();
+        const keys = Object.keys(req.body);
+        const values = Object.values(req.body);
 
+        const newDocument = {
+            "id": values[0],
+            "title": values[1],
+            "price": values[2],
+            "description": values[3],
+            "category": values[4],
+            "imageUrl": values[5],
+            "rating": values[6]
+        };
+        console.log(newDocument);
+
+        const results = await db
+            .collection("fakestore_catalog")
+            .insertOne(newDocument);
+        res.status(200);
+        res.send(results);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send({ error: 'An internal server error occurred' });
+    }
+});

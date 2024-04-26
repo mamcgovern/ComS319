@@ -92,3 +92,29 @@ app.post("/addProduct", async (req, res) => {
         res.status(500).send({ error: 'An internal server error occurred' });
     }
 });
+
+//update
+app.put("/updateProduct/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const query = { id: id };
+    await client.connect();
+    console.log("Product to Update: ", id);
+    // Data for updating the document, typically comes from the request body
+    console.log(req.body);
+    const updateData = {
+        $set: {
+            "price": parseFloat(req.body.price).toFixed(2)
+        }
+    };
+    // read data from product to update to send to frontend
+    const productUpdated = await db.collection("fakestore_catalog").findOne(query);
+    // Add options if needed, for example { upsert: true } to create a document if it doesn't exist
+    const options = {};
+    const results = await db.collection("fakestore_catalog").updateOne(query, updateData, options);
+    // If no document was found to update, you can choose to handle it by sending a 404 response
+    if (results.matchedCount === 0) {
+        return res.status(404).send({ message: 'Product not found' });
+    }
+    res.status(200);
+    res.status(200).json({ results, updatedProduct: productUpdated });
+});

@@ -38,7 +38,7 @@ function Products() {
 
   function postProduct(data) {
     const productData = {
-      id: data.id,
+      id: parseInt(data.id),
       title: data.title,
       price: parseFloat(data.price),
       description: data.description,
@@ -174,7 +174,7 @@ function Products() {
             </div>
           </div>
           <div>
-            <input type="number" placeholder="Enter Price" value={price} onChange={(e) => setPrice(e)} />
+            <input type="number" placeholder="Enter Price" value={price} onChange={(e) => setPrice(parseFloat(e.target.value))} />
             <button type="button" onClick={() => updateProduct()}>Update Price</button>
           </div>
           <div>
@@ -200,7 +200,18 @@ function Products() {
   }
 
   function updateProduct() {
-
+    console.log(id);
+    fetch(`http://localhost:8081/updateProduct/${id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(
+        {
+          "price": price
+        }
+      )
+    })
+      .then(response => response.json())
+      //.then(updateThisRobot => { updateOneRobotById(updateThisRobot) });
   }
 
 

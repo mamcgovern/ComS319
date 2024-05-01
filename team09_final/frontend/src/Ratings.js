@@ -168,7 +168,6 @@ function Ratings() {
                 return viewTips();
             }
         }
-
         return (
             <div>
                 {navbar()}

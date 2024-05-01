@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "courseID": 1,
+        "username": "mrm4",
+        "date": "2/28/24",
+        "question": "Is this a question?",
+        "answers": [
+            {
+                "username": "charlesl",
+                "answer": "This is an answer to your question.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    }
+]

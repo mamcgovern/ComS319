@@ -27,6 +27,9 @@ function Ratings() {
     const [questions, setQuestions] = useState([]);
     const [tips, setTips] = useState([]);
     const [rating, setRating] = useState(0);
+    const [dataF, setDataF] = useState("");
+    const { register, handleSubmit, formState: { errors }, unregister } = useForm();
+    const formRef = useRef(null);
 
     /*
      * This method updates the courses array.
@@ -98,6 +101,24 @@ function Ratings() {
      */
     const handleRatingChange = (newRating) => {
         setRating(newRating); // Update the rating state with the new rating
+    };
+
+    /*
+     * This function is for submitting the rating info
+     */
+    const onSubmit = (data, event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+        console.log(data); // log all data
+        console.log(data.fullName); // log only fullname
+
+        // update hooks
+        setDataF(data);
+        setView(2);
+
+        // Reset the form fields after a short delay
+        setTimeout(() => {
+            event.target.reset();
+        }, 100);
     };
 
     /*
@@ -268,37 +289,68 @@ function Ratings() {
 
         return (
             <div>
-                <div id="ratings" class="subforum-full-row">
-                    <div class="subforum-description subforum-column">
-                        <div class="ratings-row">
-                            <div class="ratings-column">
-                                <strong>Semester:</strong> <input type="text" />
-                            </div>
-                            <div class="ratings-column" style={{ textAlign: 'right' }}>
-                                <strong>Date:</strong> <input type="text" />
-                            </div>
-                        </div>
-                        <div class="ratings-row">
-                            <div class="ratings-column">
-                                <strong>Instructor:</strong> <input type="text" />
-                            </div>
-                            <div class="ratings-column" style={{ textAlign: 'right' }}>
-                                {renderStars()}
-                            </div>
-                        </div>
-                        <div class="ratings-full-row">
-                            <div class="ratings-column">
-                                <textarea style={{ width: '100%', resize: 'vertical', minHeight: '5em' }}></textarea>
-                            </div>
-                        </div>
-                        <div class="ratings-full-row">
-                            <div style={{ textAlign: 'right' }}>
-                                <button class="btn btn-primary rounded-pill px-3" style={{ width: '10%' }} >Submit</button>
+                <div class="subforum-full-row">
+                    <div class="subforum-column">
+                        <div class="row g-3">
+                            <div class="col">
+                                <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+                                    {/* Shipping Information */}
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-sm-6">
+                                            <div className="form-group">
+                                                <input {...register("username", { required: true })} placeholder="Username" className="form-control" />
+                                                {errors.username && <p className="text-danger">Username is required.</p>}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div className="form-group">
+                                                <input {...register("date", { required: true, pattern: /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/ })} placeholder="MM/DD/YYYY" className="form-control" />
+                                                {errors.date && <p className="text-danger">Date must be in form MM/DD/YYYY.</p>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-md-5">
+                                            <div className="form-group">
+                                                <input {...register("professor", { required: true })} placeholder="Instructor" className="form-control" />
+                                                {errors.professor && <p className="text-danger">Instructor name is required.</p>}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div className="form-group">
+                                                <input {...register("semester", { required: true, pattern: /^(Spring|Summer|Fall|Winter)\s\d{4}$/ })} placeholder="Semester YYYY" className="form-control" />
+                                                {errors.semester && <p className="text-danger">Semester is required.</p>}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 ">
+                                            <div className="form-group" style={{ textAlign: 'right' }}>
+                                                {renderStars()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col">
+                                            <textarea
+                                                {...register("description", { required: true })}
+                                                placeholder="Enter your description here"
+                                                className="form-control"
+                                                style={{ width: '100%', minHeight: '100px', resize: 'both' }}
+                                            />
+                                            {errors.description && <p className="text-danger">Description is required.</p>}
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div class="row g-3 mb-3">
+                                        <div class="col">
+                                            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 {allRatings}
             </div>
         )

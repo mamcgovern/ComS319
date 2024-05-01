@@ -132,7 +132,7 @@ function Ratings() {
                     <img src={el.imageURL} alt="..." style={{ width: '100%' }} />
                 </div>
                 <div class="subforum-description subforum-column">
-                    <h1>{el.id}: <button type="button" onClick={() => getOneCourse(el.id)}>{el.courseCode}</button></h1>
+                    <h1>{el.id}: <button class="button-like-text" type="button" onClick={() => getOneCourse(el.id)}>{el.courseCode}</button></h1>
                     <p class="title"><strong>{el.title}</strong></p>
                     <p>{el.description}</p>
                 </div>
@@ -215,7 +215,7 @@ function Ratings() {
             } else if (numStars === 1) {
                 return (
                     <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
@@ -225,8 +225,8 @@ function Ratings() {
             } else if (numStars === 2) {
                 return (
                     <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
@@ -235,9 +235,9 @@ function Ratings() {
             } else if (numStars === 3) {
                 return (
                     <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                     </div>
@@ -245,21 +245,21 @@ function Ratings() {
             } else if (numStars === 4) {
                 return (
                     <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
                         <img src={starOutline} style={{ width: '25px' }} alt="star outline"/>
                     </div>
                 )
             } else if (numStars === 5) {
                 return (
                     <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
+                        <img src={starFilled} style={{ width: '25px' }} alt="star filled"/>
                     </div>
                 )
             }
@@ -290,7 +290,10 @@ function Ratings() {
                     </div>
                     <div class="ratings-full-row">
                         <div class="ratings-column">
-                            <p><button onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up"/> </button> {el.helpful}     <button onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}</p>
+                            <p>
+                                <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up"/> </button> {el.helpful}
+                                <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
+                            </p>
                         </div>
                     </div>
                 </div>

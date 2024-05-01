@@ -28,6 +28,7 @@ p.title {
   cursor: pointer;
   font: inherit;
   padding: 0;
+  margin: 4px;
   align-items: center;
 }
 

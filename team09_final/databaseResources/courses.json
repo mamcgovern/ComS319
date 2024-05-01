@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "title": "Construction of User Interfaces",
+        "courseCode": "COM S 319",
+        "majorID": "COM S",
+        "description": "Overview of user interface design. Evaluation and testing of user interfaces. Review of principles of object orientation, object oriented design and analysis using UML in the context of user interface design. Design of windows, menus and commands. Developing Web and Windows-based user-interfaces. Event-driven programming. Introduction to Frameworks and APIs for the construction of user interfaces.",
+        "imageURL": "./images/html-coding.jpeg"
+    },
+    {
+        "id": 2,
+        "title": "Introduction to Computer Architecture",
+        "courseCode": "COM S 321",
+        "majorID": "COM S",
+        "description": "Introduction to computer architecture and organization. Emphasis on evaluation of performance, instruction set architecture, datapath and control, memory-hierarchy design, and pipelining. Assembly language programming.",
+        "imageURL": "./images/computer-parts.jpeg"
+    },
+    {
+        "id": 3,
+        "title": "Software Testing",
+        "courseCode": "COM S 417",
+        "majorID": "COM S",
+        "description": "An introduction to software testing principles and techniques. Test models, test design, test adequacy criteria; regression, integration, and system testing; and software testing tools.",
+        "imageURL": "./images/coding.jpeg"
+    },
+    {
+        "id": 4,
+        "title": "Women in Politics",
+        "courseCode": "POL S 385",
+        "majorID": "POL S",
+        "description": "Entry and participation of women in politics in the United States and other countries. Contemporary issues and strategies for change through the political process. Meets U.S. Diversity Requirement.",
+        "imageURL": "./images/government-building.jpeg"
+    },
+    {
+        "id": 5,
+        "title": "Public Policy",
+        "courseCode": "POL S 344",
+        "majorID": "POL S",
+        "description": "How agendas come to be set in public policy, theories describing the policy-making process, forces molding policy choices and the impact of such choices.",
+        "imageURL": "./images/voting-day.jpeg"
+    },
+    {
+        "id": 6,
+        "title": "Philosophy of Technology",
+        "courseCode": "PHIL 343",
+        "majorID": "PHIL",
+        "description": "Moral and other philosophical problems related to developments in technology. Topics may include conditions under which technological innovations contribute to human emancipation, relationship of technology and democracy, utility and limits of technical rationality, and problems of ensuring that benefits of technological advance are communally shared. Topics discussed with reference to such issues as contemporary developments in microelectronics, technology transfer to the Third World, etc.",
+        "imageURL": "./images/app-development.jpeg"
+    },
+    {
+        "id": 7,
+        "title": "Introduction to Classical Physics I",
+        "courseCode": "PHYS 231",
+        "majorID": "PHYS",
+        "description": "For engineering and science majors. 3 hours of lecture each week plus 3 recitations every two weeks. Elementary mechanics including kinematics and dynamics of particles, work and energy, linear and angular momentum, conservation laws, rotational motion, oscillations, gravitation. Heat, thermodynamics, kinetic theory of gases; waves and sound. Proficiency in algebra, trigonometry, vector manipulation required.",
+        "imageURL": "./images/newtons-cradle.jpeg"
+    },
+    {
+        "id": 8,
+        "title": "Introduction to Classical Physics II",
+        "courseCode": "PHYS 232",
+        "majorID": "PHYS",
+        "description": "3 hours of lecture each week plus 1 recitation each week. Fluid dynamics. Electric forces and fields. Electrical currents; DC circuits. Magnetic forces and fields; LR, LC, LCR circuits; Maxwell's equations; wave optics.",
+        "imageURL": "./images/equation.jpeg"
+    },
+    {
+        "id": 9,
+        "title": "Calculus II",
+        "courseCode": "MATH 166",
+        "majorID": "MATH",
+        "description": "Integral calculus, applications of the integral, parametric curves and polar coordinates, power series and Taylor series.",
+        "imageURL": "./images/blackboard.jpeg"
+    },
+    {
+        "id": 10,
+        "title": "Calculus III",
+        "courseCode": "MATH 265",
+        "majorID": "MATH",
+        "description": "Geometry of space and vectors, multivariable differential calculus, multivariable integral calculus, vector calculus.",
+        "imageURL": "./images/calculator.jpeg"
+    }
+]

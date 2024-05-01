@@ -1,0 +1,122 @@
+[
+    {
+        "id": "1",
+        "courseID": "1",
+        "courseCode": "Com S 319",
+        "username": "mrm4",
+        "date": "4/30/2024",
+        "comment": "Make sure you remember to keep up with the ZyBooks!"
+    },
+    {
+        "id": "2",
+        "courseID": "1",
+        "courseCode": "Com S 319",
+        "username": "gmartin",
+        "date": "11/29/2023",
+        "comment": "Pay attention in class; the homeworks are very similar to the in-class assignments."
+    },
+    {
+        "id": "3",
+        "courseID": "2",
+        "courseCode": "Com S 321",
+        "username": "mrm4",
+        "date": "4/29/2024",
+        "comment": "There are practice problems in the book that will help with the written homeworks."
+    },
+    {
+        "id": "4",
+        "courseID": "2",
+        "courseCode": "Com S 321",
+        "username": "hannahk",
+        "date": "7/14/2020",
+        "comment": "Pay attention and take good notes."
+    },
+    {
+        "id": "5",
+        "courseID": "3",
+        "courseCode": "Com S 417",
+        "username": "mrm4",
+        "date": "3/28/2024",
+        "comment": "Do the optional in class assignments, they are very similar to the homeworks."
+    },
+    {
+        "id": "6",
+        "courseID": "3",
+        "courseCode": "Com S 417",
+        "username": "jessicab",
+        "date": "1/12/2021",
+        "comment": "Go to class; everything on the exam is talked about in class."
+    },
+    {
+        "id": "7",
+        "courseID": "4",
+        "courseCode": "Pol S 385",
+        "username": "jjensen",
+        "date": "9/18/2022",
+        "comment": "Do the readings! They are on the exam!"
+    },
+    {
+        "id": "8",
+        "courseID": "4",
+        "courseCode": "Pol S 385",
+        "username": "johnsonk",
+        "date": "8/11/2023",
+        "comment": "Pay attention in class and you should be good."
+    },
+    {
+        "id": "9",
+        "courseID": "5",
+        "courseCode": "Pol S 344",
+        "username": "carloss",
+        "date": "5/14/2021",
+        "comment": "The final paper is most of your grade, so make sure you do your best on it."
+    },
+    {
+        "id": "10",
+        "courseID": "5",
+        "courseCode": "Pol S 344",
+        "username": "cleclerc",
+        "date": "11/3/2023",
+        "comment": "I highly suggest going to the Writing and Communication Consultants if you need help with your paper."
+    },
+    {
+        "id": "11",
+        "courseID": "6",
+        "courseCode": "Phil 343",
+        "username": "dricciardo",
+        "date": "1/24/2024",
+        "comment": "Do the readings! The exam is based on them."
+    },
+    {
+        "id": "12",
+        "courseID": "7",
+        "courseCode": "Phys 231",
+        "username": "bpierce",
+        "date": "4/20/2024",
+        "comment": "Go to SI sessions if you are struggling."
+    },
+    {
+        "id": "13",
+        "courseID": "8",
+        "courseCode": "Phys 232",
+        "username": "bshepp",
+        "date": "2/22/2022",
+        "comment": "Take this class at Iowa Western."
+    },
+    {
+        "id": "14",
+        "courseID": "9",
+        "courseCode": "Math 166",
+        "username": "mmarlar",
+        "date": "3/31/2021",
+        "comment": "Go to office hours and get a tutor if you're struggling."
+    },
+    {
+        "id": "15",
+        "courseID": "10",
+        "courseCode": "Math 265",
+        "username": "galberson",
+        "date": "12/24/2022",
+        "comment": "Do the practice quizzes and watch Steve Butler's videos."
+    }
+]

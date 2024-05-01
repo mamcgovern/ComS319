@@ -1,0 +1,9 @@
+REMEMBER: delete this folder before submitting the assignment
+
+You can use the JSON files in this folder to import the data into mongoDB.
+
+The database should be titled: team09_final_db
+The course info table should be titled: courses
+The ratings table should be titled: ratings
+The questions table should be titled: questions
+The tips table should be titled: tips

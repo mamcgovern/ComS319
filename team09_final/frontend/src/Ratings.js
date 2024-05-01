@@ -321,7 +321,7 @@ function Ratings() {
                         </div>
                         <div class="ratings-full-row">
                             <div class="ratings-column">
-                                <input type="text" style={{ width: '100%' }} />
+                            <textarea style={{ width: '100%', resize: 'vertical', minHeight: '5em'}}></textarea>
                             </div>
                         </div>
                         <div class="ratings-full-row">

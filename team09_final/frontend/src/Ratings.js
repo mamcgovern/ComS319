@@ -290,7 +290,7 @@ function Ratings() {
                     </div>
                     <div class="ratings-full-row">
                         <div class="ratings-column">
-                            <p><button onClick={() => addHelpful(el.id, el.helpful+1)}><img src={thumbsUp} style={{ width: '25px' }} /> </button> {el.helpful}     <button onClick={() => addUnhelpful(el.id, el.unhelpful+1)}><img src={thumbsDown} style={{ width: '25px' }} /></button> {el.unhelpful}</p>
+                            <p><button onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} /> </button> {el.helpful}     <button onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} /></button> {el.unhelpful}</p>
                         </div>
                     </div>
                 </div>
@@ -336,50 +336,39 @@ function Ratings() {
                 {/* Header */}
                 {navbar()}
                 <div class="container">
-                    {/* Title */}
-                    <h1>About</h1>
-                    {/* Content */}
-                    <section>
-                        <div>
-                            <h2>Class Information</h2>
-                            <p>Com S 319: Construction of User Interfaces</p>
-                            <p>Professor Ali Jannesari</p>
-                            <p>April 27, 2024</p>
+                    <div class="container subforum">
+                        <div class="subforum-title">
+                            <h1>About</h1>
                         </div>
-                    </section>
-                    <section>
                         <div>
-                            <h2>Project Description</h2>
-                            <p class="title">Final Project</p>
-                            {/* TODO add description */}
-                            <p>Description goes here</p>
-                        </div>
-                    </section>
-                    <div class="album py-5 bg-body-tertiary">
-                        <h2>Developers:</h2>
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h3>Maddelynne McGovern</h3>
-                                        <p class="title">mrm4@iastate.edu</p>
-                                    </div>
+                            <div class="subforum-full-row">
+                                <div class="subforum-column">
+                                    <h2>Class Information</h2>
+                                    <p>Com S 319: Construction of User Interfaces</p>
+                                    <p>Professor Ali Jannesari</p>
+                                    <p>April 27, 2024</p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h3>Jennifer Hua</h3>
-                                        <p class="title">jthua@iastate.edu</p>
-                                    </div>
+                            <div class="subforum-full-row">
+                                <div class="subforum-column">
+                                    <h2>Project Description</h2>
+                                    <p class="title">Final Project</p>
+                                    {/* TODO add description */}
+                                    <p>Description goes here</p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h3>Sagnik Dey</h3>
-                                        <p class="title">sdey@iastate.edu</p>
-                                    </div>
+                            <div class="subforum-row-thirds">
+                                <div class="subforum-column">
+                                    <h3>Maddelynne McGovern</h3>
+                                    <p class="title">mrm4@iastate.edu</p>
+                                </div>
+                                <div class="subforum-column">
+                                    <h3>Jennifer Hua</h3>
+                                    <p class="title">jthua@iastate.edu</p>
+                                </div>
+                                <div class="subforum-column">
+                                    <h3>Sagnik Dey</h3>
+                                    <p class="title">sdey@iastate.edu</p>
                                 </div>
                             </div>
                         </div>

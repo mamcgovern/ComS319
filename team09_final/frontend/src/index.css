@@ -15,7 +15,7 @@ code {
 p.title {
   font-family: 'Courier New',
       Courier, monospace;
-  color: brown;
+  font-weight: bold;
 }
 
 .btn {
@@ -286,6 +286,11 @@ footer {
 
 .ratings-column {
   margin: 5px;
+}
+
+.subforum-row-thirds {
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
 }
 
 

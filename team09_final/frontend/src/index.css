@@ -22,6 +22,15 @@ p.title {
   margin: 5 px;
 }
 
+.button-like-text {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  align-items: center;
+}
+
 /* Define custom variables for colors */
 :root {
   --primary-color: #46494C;

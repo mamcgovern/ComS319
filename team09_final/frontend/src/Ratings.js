@@ -131,6 +131,14 @@ function Ratings() {
             .then(responseData => {
                 console.log('Success:', responseData);
             })
+            .then(() => {
+                // Fetch updated ratings after posting a new rating
+                fetch(`http://localhost:8081/ratings/${id}`)
+                    .then(response => response.json())
+                    .then(ratings => {
+                        setRatings(ratings);
+                    });
+            })
             .catch(error => console.error('Error fetching product data:', error));
 
         // Reset the form fields after a short delay

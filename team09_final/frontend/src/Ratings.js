@@ -75,6 +75,14 @@ function Ratings() {
             )
         })
             .then(response => response.json())
+            .then(() => {
+                // Fetch updated ratings after updating unhelpful count
+                fetch(`http://localhost:8081/ratings/${id}`)
+                    .then(response => response.json())
+                    .then(ratings => {
+                        setRatings(ratings);
+                    });
+            });
     }
 
     /*
@@ -93,6 +101,14 @@ function Ratings() {
             )
         })
             .then(response => response.json())
+            .then(() => {
+                // Fetch updated ratings after updating unhelpful count
+                fetch(`http://localhost:8081/ratings/${id}`)
+                    .then(response => response.json())
+                    .then(ratings => {
+                        setRatings(ratings);
+                    });
+            });
     }
 
     /*

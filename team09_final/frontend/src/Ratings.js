@@ -27,7 +27,6 @@ function Ratings() {
     const [questions, setQuestions] = useState([]);
     const [tips, setTips] = useState([]);
     const [rating, setRating] = useState(0);
-    const [dataF, setDataF] = useState("");
     const { register, handleSubmit, formState: { errors }, unregister } = useForm();
     const formRef = useRef(null);
 
@@ -104,20 +103,40 @@ function Ratings() {
     };
 
     /*
-     * This function is for submitting the rating info
+     * This function is for submitting the rating info.
+     * It includes a post request.
      */
     const onSubmit = (data, event) => {
         event.preventDefault(); // Prevent default form submission behavior
         console.log(data); // log all data
-        console.log(data.fullName); // log only fullname
 
-        // update hooks
-        setDataF(data);
-        setView(2);
+        const ratingData = {
+            courseID: id,
+            username: data.username,
+            date: data.date,
+            semester: data.semester,
+            professor: data.professor,
+            stars: rating,
+            comment: data.comment
+        };
+
+        fetch('http://localhost:8081/ratings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ratingData)
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                console.log('Success:', responseData);
+            })
+            .catch(error => console.error('Error fetching product data:', error));
 
         // Reset the form fields after a short delay
         setTimeout(() => {
             event.target.reset();
+            setRating(0);
         }, 100);
     };
 
@@ -331,12 +350,12 @@ function Ratings() {
                                     <div class="row g-3 mb-3">
                                         <div class="col">
                                             <textarea
-                                                {...register("description", { required: true })}
-                                                placeholder="Enter your description here"
+                                                {...register("comment", { required: true })}
+                                                placeholder="Enter your comment here"
                                                 className="form-control"
                                                 style={{ width: '100%', minHeight: '100px', resize: 'both' }}
                                             />
-                                            {errors.description && <p className="text-danger">Description is required.</p>}
+                                            {errors.comment && <p className="text-danger">Comment is required.</p>}
                                         </div>
                                     </div>
 

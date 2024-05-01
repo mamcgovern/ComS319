@@ -60,7 +60,7 @@ app.delete("/courses/:id", async (req, res) => {
         res.status(200);
         res.send(results);
     }
-    catch (error){
+    catch (error) {
         console.error("Error deleting course:", error);
         res.status(500).send({ message: 'Internal Server Error' });
     }
@@ -175,4 +175,44 @@ app.put("/ratings/unhelpful/:id", async (req, res) => {
     }
     res.status(200);
     res.status(200).json({ results, updatedRating: ratingUpdated });
+});
+
+
+// Post rating
+app.post("/ratings", async (req, res) => {
+    try {
+        await client.connect();
+        const keys = Object.keys(req.body);
+        const values = Object.values(req.body);
+
+        const collection = db.collection('ratings');
+        const maxIdDoc = await collection.findOne({}, { sort: { id: -1 } });
+        const maxId = maxIdDoc ? maxIdDoc.id : 0;
+
+        const newId = maxId + 1;
+
+        const newDocument = {
+            "id": newId,
+            "courseID": values[0],
+            "username": values[1],
+            "date": values[2],
+            "semester": values[3],
+            "professor": values[4],
+            "stars": parseInt(values[5]),
+            "helpful": 0,
+            "unhelpful": 0,
+            "comment": values[6]
+        };
+        console.log(newDocument);
+
+
+        const results = await db
+            .collection("ratings")
+            .insertOne(newDocument);
+        res.status(200);
+        res.send(results);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send({ error: 'An internal server error occurred' });
+    }
 });

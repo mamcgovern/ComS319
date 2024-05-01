@@ -1,7 +1,6 @@
 [
     {
         "id": 1,
-        "course": "COM S 319",
         "courseID": 1,
         "username": "mrm4",
         "date": "2/28/24",
@@ -14,7 +13,6 @@
     },
     {
         "id": 2,
-        "course": "COM S 319",
         "courseID": 1,
         "username": "ksmith",
         "date": "1/14/2024",
@@ -27,7 +25,6 @@
     },
     {
         "id": 3,
-        "course": "COM S 319",
         "courseID": 1,
         "username": "juliapom",
         "date": "12/18/2023",
@@ -40,7 +37,6 @@
     },
     {
         "id": 4,
-        "course": "COM S 319",
         "courseID": 1,
         "username": "mwilliams",
         "date": "10/31/2023",
@@ -53,7 +49,6 @@
     },
     {
         "id": 5,
-        "course": "COM S 319",
         "courseID": 1,
         "username": "andrewk",
         "date": "9/19/2023",
@@ -66,7 +61,6 @@
     },
     {
         "id": 6,
-        "course": "COM S 321",
         "courseID": 2,
         "username": "mrm4",
         "date": "2/28/2024",
@@ -79,7 +73,6 @@
     },
     {
         "id": 7,
-        "course": "COM S 321",
         "courseID": 2,
         "username": "johnm",
         "date": "9/19/2020",
@@ -92,7 +85,6 @@
     },
     {
         "id": 8,
-        "course": "COM S 417",
         "courseID": 3,
         "username": "mrm4",
         "date": "2/28/2024",
@@ -105,7 +97,6 @@
     },
     {
         "id": 9,
-        "course": "COM S 417",
         "courseID": 3,
         "username": "landerson",
         "date": "7/10/2023",
@@ -118,7 +109,6 @@
     },
     {
         "id": 10,
-        "course": "Pol S 385",
         "courseID": 4,
         "username": "mrm4",
         "date": "2/28/2024",
@@ -131,7 +121,6 @@
     },
     {
         "id": 11,
-        "course": "Pol S 385",
         "courseID": 4,
         "username": "marynelson",
         "date": "12/22/2020",
@@ -144,7 +133,6 @@
     },
     {
         "id": 12,
-        "course": "Pol S 344",
         "courseID": 5,
         "username": "mrm4",
         "date": "2/28/2024",
@@ -157,7 +145,6 @@
     },
     {
         "id": 13,
-        "course": "Pol S 344",
         "courseID": 5,
         "username": "adavis",
         "date": "2/17/2022",
@@ -170,7 +157,6 @@
     },
     {
         "id": 14,
-        "course": "Phil 343",
         "courseID": 6,
         "username": "mrm4",
         "date": "2/28/2024",
@@ -183,7 +169,6 @@
     },
     {
         "id": 15,
-        "course": "Phys 231",
         "courseID": 7,
         "username": "mmiller",
         "date": "12/9/2020",
@@ -196,7 +181,6 @@
     },
     {
         "id": 16,
-        "course": "Phys 232",
         "courseID": 8,
         "username": "jhernandez",
         "date": "6/13/2021",
@@ -209,7 +193,6 @@
     },
     {
         "id": 17,
-        "course": "Math 166",
         "courseID": 9,
         "username": "ymartin",
         "date": "1/25/2024",
@@ -222,7 +205,6 @@
     },
     {
         "id": 18,
-        "course": "Math 265",
         "courseID": 10,
         "username": "mrm4",
         "date": "2/28/2024",

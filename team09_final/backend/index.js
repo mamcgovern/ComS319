@@ -21,7 +21,7 @@ app.listen(port, () => {
 });
 
 // Get all courses
-app.get("/", async (req, res) => {
+app.get("/courses/", async (req, res) => {
     await client.connect();
     console.log("Node connected successfully to GET MongoDB");
     const query = {};
@@ -36,11 +36,11 @@ app.get("/", async (req, res) => {
 });
 
 // Get course by ID
-app.get("/:id", async (req, res) => {
-    const productid = Number(req.params.id);
+app.get("/courses/:id", async (req, res) => {
+    const courseid = Number(req.params.id);
     await client.connect();
     console.log("Node connected successfully to GET-id MongoDB");
-    const query = { "id": productid };
+    const query = { "id": courseid };
     const results = await db.collection("courses")
         .findOne(query);
     console.log("Results :", results);
@@ -49,7 +49,7 @@ app.get("/:id", async (req, res) => {
 });
 
 // Delete course by ID
-app.delete("/:id", async (req, res) => {
+app.delete("/courses/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
         await client.connect();
@@ -61,13 +61,13 @@ app.delete("/:id", async (req, res) => {
         res.send(results);
     }
     catch (error){
-        console.error("Error deleting product:", error);
+        console.error("Error deleting course:", error);
         res.status(500).send({ message: 'Internal Server Error' });
     }
 });
 
 // Post course
-app.post("/", async (req, res) => {
+app.post("/courses/", async (req, res) => {
     try {
         await client.connect();
         const keys = Object.keys(req.body);
@@ -94,3 +94,85 @@ app.post("/", async (req, res) => {
     }
 });
 
+// Get all ratings
+app.get("/ratings", async (req, res) => {
+    await client.connect();
+    console.log("Node connected successfully to GET MongoDB");
+    const query = {};
+    const results = await db
+        .collection("ratings")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log(results);
+    res.status(200);
+    res.send(results);
+});
+
+// Get ratings by course ID
+app.get("/ratings/:id", async (req, res) => {
+    const courseid = Number(req.params.id);
+    await client.connect();
+    console.log("Node connected successfully to GET-id MongoDB");
+    const query = { "courseID": courseid };
+    const results = await db.collection("ratings")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log("Results: ", results);
+    if (!results) res.send("Not Found").status(404);
+    else res.send(results).status(200);
+});
+
+
+// Put: Add Helpful
+app.put("/ratings/helpful/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const query = { id: id };
+    await client.connect();
+    console.log("Rating to Update: ", id);
+    // Data for updating the document, typically comes from the request body
+    console.log(req.body);
+    const updateData = {
+        $set: {
+            "helpful": parseInt(req.body.helpful)
+        }
+    };
+    // read data from rating to update to send to frontend
+    const ratingUpdated = await db.collection("ratings").findOne(query);
+    // Add options if needed, for example { upsert: true } to create a document if it doesn't exist
+    const options = {};
+    const results = await db.collection("ratings").updateOne(query, updateData, options);
+    // If no document was found to update, you can choose to handle it by sending a 404 response
+    if (results.matchedCount === 0) {
+        return res.status(404).send({ message: 'Rating not found' });
+    }
+    res.status(200);
+    res.status(200).json({ results, updatedRating: ratingUpdated });
+});
+
+// Put: Add unhelpful
+app.put("/ratings/unhelpful/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const query = { id: id };
+    await client.connect();
+    console.log("Rating to Update: ", id);
+    // Data for updating the document, typically comes from the request body
+    console.log(req.body);
+    const updateData = {
+        $set: {
+            "unhelpful": parseInt(req.body.unhelpful)
+        }
+    };
+    // read data from rating to update to send to frontend
+    const ratingUpdated = await db.collection("ratings").findOne(query);
+    // Add options if needed, for example { upsert: true } to create a document if it doesn't exist
+    const options = {};
+    const results = await db.collection("ratings").updateOne(query, updateData, options);
+    // If no document was found to update, you can choose to handle it by sending a 404 response
+    if (results.matchedCount === 0) {
+        return res.status(404).send({ message: 'Rating not found' });
+    }
+    res.status(200);
+    res.status(200).json({ results, updatedRating: ratingUpdated });
+});

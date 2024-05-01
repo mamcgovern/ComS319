@@ -1,7 +1,8 @@
 [
     {
+        "id": 1,
         "course": "COM S 319",
-        "couseID": 1,
+        "courseID": 1,
         "username": "mrm4",
         "date": "2/28/24",
         "semester": "Fall 2023",
@@ -12,8 +13,9 @@
         "comment": "This class is really fun! You gain experience on multiple different projects!"
     },
     {
+        "id": 2,
         "course": "COM S 319",
-        "couseID": 1,
+        "courseID": 1,
         "username": "ksmith",
         "date": "1/14/2024",
         "semester": "Fall 2023",
@@ -24,8 +26,9 @@
         "comment": "I really appreciated having in class activities. This allowed me to ask questions about the course content whenever I was confused."
     },
     {
+        "id": 3,
         "course": "COM S 319",
-        "couseID": 1,
+        "courseID": 1,
         "username": "juliapom",
         "date": "12/18/2023",
         "semester": "Fall 2023",
@@ -36,8 +39,9 @@
         "comment": "Amazing class! I had a great time."
     },
     {
+        "id": 4,
         "course": "COM S 319",
-        "couseID": 1,
+        "courseID": 1,
         "username": "mwilliams",
         "date": "10/31/2023",
         "semester": "Spring 2023",
@@ -48,8 +52,9 @@
         "comment": "Beware: There are occassional pop quizzes in this course. However, they are extra credit."
     },
     {
+        "id": 5,
         "course": "COM S 319",
-        "couseID": 1,
+        "courseID": 1,
         "username": "andrewk",
         "date": "9/19/2023",
         "semester": "Spring 2023",
@@ -60,8 +65,9 @@
         "comment": "I loved how much freedom we were given in our projects. It was nice to be able to work on a website that I actually cared about."
     },
     {
+        "id": 6,
         "course": "COM S 321",
-        "couseID": 2,
+        "courseID": 2,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",
@@ -72,8 +78,9 @@
         "comment": "This class helps you understand how computers actually work. So far, we have learned a lot about computer memory and assembly code."
     },
     {
+        "id": 7,
         "course": "COM S 321",
-        "couseID": 2,
+        "courseID": 2,
         "username": "johnm",
         "date": "9/19/2020",
         "semester": "Spring 2020",
@@ -84,8 +91,9 @@
         "comment": "I really enjoyed this class. Just make sure to do the readings and attend lecture!"
     },
     {
+        "id": 8,
         "course": "COM S 417",
-        "couseID": 3,
+        "courseID": 3,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",
@@ -96,8 +104,9 @@
         "comment": "I realy like this class. Right now, we are learning about automated gui testing. I really appreciate that we have in class activities to learn how to use the testing programs before we do our assignments."
     },
     {
+        "id": 9,
         "course": "COM S 417",
-        "couseID": 3,
+        "courseID": 3,
         "username": "landerson",
         "date": "7/10/2023",
         "semester": "Spring 2023",
@@ -108,8 +117,9 @@
         "comment": "Great class! Make sure to attend lectures, though!"
     },
     {
+        "id": 10,
         "course": "Pol S 385",
-        "couseID": 4,
+        "courseID": 4,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",
@@ -120,8 +130,9 @@
         "comment": "This was definitely one of my favorite classes. Fair warning, it is pretty reading heavy, but it all feels worth it."
     },
     {
+        "id": 11,
         "course": "Pol S 385",
-        "couseID": 4,
+        "courseID": 4,
         "username": "marynelson",
         "date": "12/22/2020",
         "semester": "Fall 2020",
@@ -132,8 +143,9 @@
         "comment": "I recommend this class to everyone I know. However, it is an exam heavy course."
     },
     {
+        "id": 12,
         "course": "Pol S 344",
-        "couseID": 5,
+        "courseID": 5,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",
@@ -144,8 +156,9 @@
         "comment": "I liked that one of our assignments was to write a policy proposal. This helped me understand them even more."
     },
     {
+        "id": 13,
         "course": "Pol S 344",
-        "couseID": 5,
+        "courseID": 5,
         "username": "adavis",
         "date": "2/17/2022",
         "semester": "Fall 2021",
@@ -156,8 +169,9 @@
         "comment": "Make sure to keep up with the class if you take it online!"
     },
     {
+        "id": 14,
         "course": "Phil 343",
-        "couseID": 6,
+        "courseID": 6,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",
@@ -168,8 +182,9 @@
         "comment": "This class was very interesting. I loved that we were able to choose our own topics for the final paper."
     },
     {
+        "id": 15,
         "course": "Phys 231",
-        "couseID": 7,
+        "courseID": 7,
         "username": "mmiller",
         "date": "12/9/2020",
         "semester": "Fall 2020",
@@ -180,8 +195,9 @@
         "comment": "Difficult class, make sure to ask for help often."
     },
     {
+        "id": 16,
         "course": "Phys 232",
-        "couseID": 8,
+        "courseID": 8,
         "username": "jhernandez",
         "date": "6/13/2021",
         "semester": "Spring 2021",
@@ -192,8 +208,9 @@
         "comment": "Make sure you aren't taking too many other hard classes at the same time as this course."
     },
     {
+        "id": 17,
         "course": "Math 166",
-        "couseID": 9,
+        "courseID": 9,
         "username": "ymartin",
         "date": "1/25/2024",
         "semester": "Fall 2023",
@@ -204,8 +221,9 @@
         "comment": "This class was very hard, but very rewarding."
     },
     {
+        "id": 18,
         "course": "Math 265",
-        "couseID": 10,
+        "courseID": 10,
         "username": "mrm4",
         "date": "2/28/2024",
         "semester": "Fall 2023",

@@ -5,7 +5,7 @@
         "courseCode": "COM S 319",
         "majorID": "COM S",
         "description": "Overview of user interface design. Evaluation and testing of user interfaces. Review of principles of object orientation, object oriented design and analysis using UML in the context of user interface design. Design of windows, menus and commands. Developing Web and Windows-based user-interfaces. Event-driven programming. Introduction to Frameworks and APIs for the construction of user interfaces.",
-        "imageURL": "./images/html-coding.jpeg"
+        "imageURL": "https://img.freepik.com/free-photo/computer-program-coding-screen_53876-138060.jpg?t=st=1714530506~exp=1714534106~hmac=645471659cacc12f2ed2ffab0d06feb9d94c6943b1af8827587718bcc490b5f2&w=1800"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "courseCode": "COM S 321",
         "majorID": "COM S",
         "description": "Introduction to computer architecture and organization. Emphasis on evaluation of performance, instruction set architecture, datapath and control, memory-hierarchy design, and pipelining. Assembly language programming.",
-        "imageURL": "./images/computer-parts.jpeg"
+        "imageURL": "https://img.freepik.com/free-photo/top-view-circuit-board-electrical-equipment-white-surface_23-2148087579.jpg?t=st=1714530592~exp=1714534192~hmac=968a8c327793a7d67f985534c352663c7cec88913cbb9112945e46a257a67cf1&w=1380"
     },
     {
         "id": 3,
@@ -21,7 +21,7 @@
         "courseCode": "COM S 417",
         "majorID": "COM S",
         "description": "An introduction to software testing principles and techniques. Test models, test design, test adequacy criteria; regression, integration, and system testing; and software testing tools.",
-        "imageURL": "./images/coding.jpeg"
+        "imageURL": "https://img.freepik.com/free-photo/programming-background-with-person-working-with-codes-computer_23-2150010125.jpg?t=st=1714530558~exp=1714534158~hmac=3bb172b6412582e432aa376893f7445ba8dcc5ce8b03d4f570b4bcd0be6ac170&w=1800"
     },
     {
         "id": 4,
@@ -29,7 +29,7 @@
         "courseCode": "POL S 385",
         "majorID": "POL S",
         "description": "Entry and participation of women in politics in the United States and other countries. Contemporary issues and strategies for change through the political process. Meets U.S. Diversity Requirement.",
-        "imageURL": "./images/government-building.jpeg"
+        "imageURL": "https://img.freepik.com/free-vector/white-house-illustration-flat-design_23-2148863525.jpg?t=st=1714530482~exp=1714534082~hmac=c5afa2db818bb51a76dee65d0a77bbfae8e768a87d5b16fede73d9684402205c&w=1800"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "courseCode": "POL S 344",
         "majorID": "POL S",
         "description": "How agendas come to be set in public policy, theories describing the policy-making process, forces molding policy choices and the impact of such choices.",
-        "imageURL": "./images/voting-day.jpeg"
+        "imageURL": "https://img.freepik.com/free-photo/us-elections-concept-with-american-flag_23-2148726699.jpg?t=st=1714530448~exp=1714534048~hmac=f058003deb3a0f324f2b47d6f866638eb0a0c9ef678d983dd548c5299ea8d0fd&w=1480"
     },
     {
         "id": 6,
@@ -45,7 +45,7 @@
         "courseCode": "PHIL 343",
         "majorID": "PHIL",
         "description": "Moral and other philosophical problems related to developments in technology. Topics may include conditions under which technological innovations contribute to human emancipation, relationship of technology and democracy, utility and limits of technical rationality, and problems of ensuring that benefits of technological advance are communally shared. Topics discussed with reference to such issues as contemporary developments in microelectronics, technology transfer to the Third World, etc.",
-        "imageURL": "./images/app-development.jpeg"
+        "imageURL": "https://img.freepik.com/free-vector/gradient-sql-illustration_23-2149251015.jpg?w=1380&t=st=1714529992~exp=1714530592~hmac=fe14df2d94e55e65b5c0432fb32f53a69595ef8a8d8ad43d850260fdd4ed17d1"
     },
     {
         "id": 7,
@@ -53,7 +53,7 @@
         "courseCode": "PHYS 231",
         "majorID": "PHYS",
         "description": "For engineering and science majors. 3 hours of lecture each week plus 3 recitations every two weeks. Elementary mechanics including kinematics and dynamics of particles, work and energy, linear and angular momentum, conservation laws, rotational motion, oscillations, gravitation. Heat, thermodynamics, kinetic theory of gases; waves and sound. Proficiency in algebra, trigonometry, vector manipulation required.",
-        "imageURL": "./images/newtons-cradle.jpeg"
+        "imageURL": "https://img.freepik.com/free-vector/newton-s-cradle-white-background_1308-78754.jpg?t=st=1714530408~exp=1714534008~hmac=9bf191747d1eaca18dc29a916221959ce445c5f264cf1beff7fcc698d4a65a13&w=1480"
     },
     {
         "id": 8,
@@ -61,7 +61,7 @@
         "courseCode": "PHYS 232",
         "majorID": "PHYS",
         "description": "3 hours of lecture each week plus 1 recitation each week. Fluid dynamics. Electric forces and fields. Electrical currents; DC circuits. Magnetic forces and fields; LR, LC, LCR circuits; Maxwell's equations; wave optics.",
-        "imageURL": "./images/equation.jpeg"
+        "imageURL": "https://img.freepik.com/free-vector/scientific-formulas-chalkboard_23-2148494010.jpg?t=st=1714530366~exp=1714533966~hmac=0b9cc17588ab1d6566f8e9bf5e7278f7c79c65e930dd36f5ed93e3fdeb4e671d&w=1800"
     },
     {
         "id": 9,
@@ -69,7 +69,7 @@
         "courseCode": "MATH 166",
         "majorID": "MATH",
         "description": "Integral calculus, applications of the integral, parametric curves and polar coordinates, power series and Taylor series.",
-        "imageURL": "./images/blackboard.jpeg"
+        "imageURL": "https://img.freepik.com/free-vector/scientific-formulas-chalkboard_23-2148490969.jpg?t=st=1714530089~exp=1714533689~hmac=769f497f2a83ce7f471ff5a6d189ef18c053917ff65456509707f852eacaa743&w=1380"
     },
     {
         "id": 10,
@@ -77,6 +77,6 @@
         "courseCode": "MATH 265",
         "majorID": "MATH",
         "description": "Geometry of space and vectors, multivariable differential calculus, multivariable integral calculus, vector calculus.",
-        "imageURL": "./images/calculator.jpeg"
+        "imageURL": "https://igamingbusiness.com/img-srv/wUvAEAzRLcX-qe_YP7QXZJ4jhnJgsubT0NHoBKUahik/resizing_type:auto/width:2560/height:0/gravity:sm/enlarge:1/ext:webp/strip_metadata:1/quality:90/bG9jYWw6Ly8vb3JpZ2luLmlnYW1pbmdidXNpbmVzcy5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjMvMDUvcGV4ZWxzLXBpeGFiYXktMjIwMzAxLmpwZw.webp"
     }
 ]

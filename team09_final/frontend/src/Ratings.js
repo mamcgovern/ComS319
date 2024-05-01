@@ -26,6 +26,7 @@ function Ratings() {
     const [ratings, setRatings] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [tips, setTips] = useState([]);
+    const [rating, setRating] = useState(0);
 
     /*
      * This method updates the courses array.
@@ -91,6 +92,13 @@ function Ratings() {
         })
             .then(response => response.json())
     }
+
+    /*
+     * This function updates the number of stars
+     */
+    const handleRatingChange = (newRating) => {
+        setRating(newRating); // Update the rating state with the new rating
+    };
 
     /*
      * This creates the navbar for each view so it doesn't have to be retyped.
@@ -201,68 +209,27 @@ function Ratings() {
      */
     function viewRatings() {
         function stars(numStars) {
-            if (numStars === 0) {
-                return (
-                    <div>
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                    </div>
-                )
-            } else if (numStars === 1) {
-                return (
-                    <div>
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                    </div>
-                )
-            } else if (numStars === 2) {
-                return (
-                    <div>
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                    </div>
-                )
-            } else if (numStars === 3) {
-                return (
-                    <div>
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                    </div>
-                )
-            } else if (numStars === 4) {
-                return (
-                    <div>
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starOutline} style={{ width: '25px' }} alt="star outline" />
-                    </div>
-                )
-            } else if (numStars === 5) {
-                return (
-                    <div>
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                        <img src={starFilled} style={{ width: '25px' }} alt="star filled" />
-                    </div>
-                )
+            const stars = [];
+            for (let i = 1; i <= 5; i++) {
+                if (i <= numStars) {
+                    stars.push(<img key={i} src={starFilled} style={{ width: '25px', cursor: 'pointer' }} alt="star filled" />);
+                } else {
+                    stars.push(<img key={i} src={starOutline} style={{ width: '25px', cursor: 'pointer' }} alt="star outline" />);
+                }
             }
+            return stars;
         }
+        const renderStars = () => {
+            const stars = [];
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars.push(<img key={i} src={starFilled} style={{ width: '25px', cursor: 'pointer' }} alt="star filled" onClick={() => handleRatingChange(i)} />);
+                } else {
+                    stars.push(<img key={i} src={starOutline} style={{ width: '25px', cursor: 'pointer' }} alt="star outline" onClick={() => handleRatingChange(i)} />);
+                }
+            }
+            return stars;
+        };
         const allRatings = ratings.map((el) => (
             <div id="ratings" class="subforum-full-row">
                 <div class="subforum-description subforum-column">
@@ -316,12 +283,12 @@ function Ratings() {
                                 <strong>Instructor:</strong> <input type="text" />
                             </div>
                             <div class="ratings-column" style={{ textAlign: 'right' }}>
-                                {stars(0)}
+                                {renderStars()}
                             </div>
                         </div>
                         <div class="ratings-full-row">
                             <div class="ratings-column">
-                            <textarea style={{ width: '100%', resize: 'vertical', minHeight: '5em'}}></textarea>
+                                <textarea style={{ width: '100%', resize: 'vertical', minHeight: '5em' }}></textarea>
                             </div>
                         </div>
                         <div class="ratings-full-row">

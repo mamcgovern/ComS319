@@ -6,6 +6,7 @@ import starOutline from './images/star-outline.png';
 import thumbsUp from './images/thumbs-up.png'
 import thumbsDown from './images/thumbs-down.png'
 import trash from './images/trash.png';
+import brokenRobot from './images/broken-robot.png';
 
 function Ratings() {
     /*
@@ -435,6 +436,7 @@ function Ratings() {
         return (
             <div>
                 <h1>Questions</h1>
+                {/* TODO setup questions view */}
             </div>
         )
     }
@@ -446,6 +448,7 @@ function Ratings() {
         return (
             <div>
                 <h1>Tips</h1>
+                {/* TODO setup tips view */}
             </div>
         )
     }
@@ -520,10 +523,26 @@ function Ratings() {
     } else if (view === 2) {
         return viewStudents();
     } else {
-        return (<div>
-            <button onClick={() => setView(0)}>All Products</button>
-            <button onClick={() => setView(2)}>About</button>
-        </div>);
+        return (
+            <div>
+                {navbar()}
+                <div class="subforum-container">
+                    <div class="subforum" id="subforum">
+                        <div class="subforum-title" id="classTitle">
+                            <h1>Uh oh...</h1>
+                        </div>
+                        <div class="subforum-full-row">
+                            <div class="subforum-column" style={{ textAlign: 'center' }}>
+                                <img src={brokenRobot} alt="Broken Robot" style={{ width: '100px' }} />
+                                <p class="title">Error 404: Page Not Found</p>
+                                <p>The page you are looking for may have been moved, deleted, or possibly never existed.</p>
+                                <p>Click <button class="button-like-text" style={{ color: '#177e89'}} onClick={() => setView(0)}>here</button> to go back home.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 }
 

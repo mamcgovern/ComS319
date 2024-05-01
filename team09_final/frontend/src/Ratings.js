@@ -5,6 +5,7 @@ import starFilled from './images/star-fill.png';
 import starOutline from './images/star-outline.png';
 import thumbsUp from './images/thumbs-up.png'
 import thumbsDown from './images/thumbs-down.png'
+import trash from './images/trash.png';
 
 function Ratings() {
     /*
@@ -102,13 +103,40 @@ function Ratings() {
         })
             .then(response => response.json())
             .then(() => {
-                // Fetch updated ratings after updating unhelpful count
                 fetch(`http://localhost:8081/ratings/${id}`)
                     .then(response => response.json())
                     .then(ratings => {
                         setRatings(ratings);
                     });
             });
+    }
+
+
+    /*
+     * This function deletes a rating by ID
+     */
+    function deleteRating(ratingID) {
+        const confirmed = window.confirm("Are you sure you want to delete this rating: " + ratingID);
+        if (confirmed) {
+            console.log('Confirmed');
+            fetch(`http://localhost:8081/ratings/${ratingID}`, {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(
+                    { "id": ratingID }
+                )
+            })
+                .then(response => response.json())
+                .then(() => {
+                    fetch(`http://localhost:8081/ratings/${id}`)
+                        .then(response => response.json())
+                        .then(ratings => {
+                            setRatings(ratings);
+                        });
+                });
+        } else {
+            console.log('Canceled');
+        }
     }
 
     /*
@@ -318,12 +346,13 @@ function Ratings() {
                             <p>{el.comment}</p>
                         </div>
                     </div>
-                    <div class="ratings-full-row">
+                    <div class="ratings-row">
                         <div class="ratings-column">
-                            <p>
-                                <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
-                                <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
-                            </p>
+                            <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
+                            <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
+                        </div>
+                        <div class="ratings-column" style={{ textAlign: 'right' }}>
+                            <button class="button-like-text" onClick={() => deleteRating(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>
                     </div>
                 </div>

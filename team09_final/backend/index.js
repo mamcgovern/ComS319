@@ -216,3 +216,21 @@ app.post("/ratings", async (req, res) => {
         res.status(500).send({ error: 'An internal server error occurred' });
     }
 });
+
+// Delete rating by ID
+app.delete("/ratings/:id", async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        await client.connect();
+        console.log("Rating to delete: ", id);
+        const query = { id: id };
+        // delete
+        const results = await db.collection("ratings").deleteOne(query);
+        res.status(200);
+        res.send(results);
+    }
+    catch (error) {
+        console.error("Error deleting rating:", error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});

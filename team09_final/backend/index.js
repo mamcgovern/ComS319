@@ -194,14 +194,13 @@ app.post("/ratings", async (req, res) => {
         const newDocument = {
             "id": newId,
             "courseID": values[0],
-            "username": values[1],
-            "date": values[2],
-            "semester": values[3],
-            "professor": values[4],
-            "stars": parseInt(values[5]),
+            "date": values[1],
+            "semester": values[2],
+            "professor": values[3],
+            "stars": parseInt(values[4]),
             "helpful": 0,
             "unhelpful": 0,
-            "comment": values[6]
+            "comment": values[5]
         };
         console.log(newDocument);
 

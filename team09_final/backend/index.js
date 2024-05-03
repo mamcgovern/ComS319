@@ -233,3 +233,136 @@ app.delete("/ratings/:id", async (req, res) => {
         res.status(500).send({ message: 'Internal Server Error' });
     }
 });
+
+/* Backend for Questions view */
+
+// Get all questions
+app.get("/questions", async (req, res) => {
+    await client.connect();
+    console.log("Node connected successfully to GET MongoDB");
+    const query = {};
+    const results = await db
+        .collection("questions")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log(results);
+    res.status(200);
+    res.send(results);
+});
+
+// Get questions by course ID
+app.get("/questions/:id", async (req, res) => {
+    const courseid = Number(req.params.id);
+    await client.connect();
+    console.log("Node connected successfully to GET-id MongoDB");
+    const query = { "courseID": courseid };
+    const results = await db.collection("questions")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log("Results: ", results);
+    if (!results) res.send("Not Found").status(404);
+    else res.send(results).status(200);
+});
+
+// Post questions
+app.post("/questions", async (req, res) => {
+    try {
+        await client.connect();
+        const keys = Object.keys(req.body);
+        const values = Object.values(req.body);
+
+        const collection = db.collection('questions');
+        const maxIdDoc = await collection.findOne({}, { sort: { id: -1 } });
+        const maxId = maxIdDoc ? maxIdDoc.id : 0;
+
+        const newId = maxId + 1;
+
+        const newDocument = {
+            "id": newId,
+            "courseID": values[0],
+            "date": values[1],
+            "question": values[2],
+            "answers": values[3]
+        };
+        console.log(newDocument);
+
+
+        const results = await db
+            .collection("questions")
+            .insertOne(newDocument);
+        res.status(200);
+        res.send(results);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send({ error: 'An internal server error occurred' });
+    }
+});
+
+/* Backend for Tips view */
+
+// Get all tips
+app.get("/tips", async (req, res) => {
+    await client.connect();
+    console.log("Node connected successfully to GET MongoDB");
+    const query = {};
+    const results = await db
+        .collection("tips")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log(results);
+    res.status(200);
+    res.send(results);
+});
+
+// Get tips by course ID
+app.get("/tips/:id", async (req, res) => {
+    const courseid = Number(req.params.id);
+    await client.connect();
+    console.log("Node connected successfully to GET-id MongoDB");
+    const query = { "courseID": courseid };
+    const results = await db.collection("tips")
+        .find(query)
+        .limit(100)
+        .toArray();
+    console.log("Results: ", results);
+    if (!results) res.send("Not Found").status(404);
+    else res.send(results).status(200);
+});
+
+// Post tips
+app.post("/tips", async (req, res) => {
+    try {
+        await client.connect();
+        const keys = Object.keys(req.body);
+        const values = Object.values(req.body);
+
+        const collection = db.collection('tips');
+        const maxIdDoc = await collection.findOne({}, { sort: { id: -1 } });
+        const maxId = maxIdDoc ? maxIdDoc.id : 0;
+
+        const newId = maxId + 1;
+
+        const newDocument = {
+            "id": newId,
+            "courseID": values[0],
+            "date": values[1],
+            "comment": values[2]
+            // "helpful": 0,
+            // "unhelpful": 0
+        };
+        console.log(newDocument);
+
+
+        const results = await db
+            .collection("tips")
+            .insertOne(newDocument);
+        res.status(200);
+        res.send(results);
+    } catch (error) {
+        console.error("An error occurred:", error);
+        res.status(500).send({ error: 'An internal server error occurred' });
+    }
+});

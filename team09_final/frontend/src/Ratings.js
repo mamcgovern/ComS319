@@ -157,7 +157,6 @@ function Ratings() {
 
         const ratingData = {
             courseID: id,
-            username: data.username,
             date: data.date,
             semester: data.semester,
             professor: data.professor,
@@ -367,7 +366,7 @@ function Ratings() {
                         <div class="row g-3">
                             <div class="col">
                                 <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(onSubmit)}>
-                                    {/* Shipping Information */}
+                                   
                                     <div class="row g-3 mb-3">
                                         <div class="col-sm-6">
                                             <div className="form-group">

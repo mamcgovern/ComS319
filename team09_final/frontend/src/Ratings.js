@@ -59,6 +59,18 @@ function Ratings() {
             .then(response => response.json())
             .then(ratings => { setRatings(ratings) });
         setView(1);
+        
+        // get course questions
+        fetch("http://localhost:8081/questions/" + id)
+            .then(response => response.json())
+            .then(questions => { setQuestions(questions) });
+        setView(1);
+        
+        // get course tips
+        fetch("http://localhost:8081/tips/" + id)
+            .then(response => response.json())
+            .then(tips => { setTips(tips) });
+        setView(1);
     }
 
     /*
@@ -192,6 +204,90 @@ function Ratings() {
         }, 100);
     };
 
+    /**
+     * 
+     * This function is for submitting questions
+     */
+    const submitQuestions = (data, event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+        console.log(data); // log all data
+
+        const questionData = {
+            courseID: id,
+            date: data.date,
+            question: data.question
+        };
+
+        fetch('http://localhost:8081/questions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(questionData)
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                console.log('Success:', responseData);
+            })
+            .then(() => {
+                // Fetch updated ratings after posting a new rating
+                fetch(`http://localhost:8081/questions/${id}`)
+                    .then(response => response.json())
+                    .then(questions => {
+                        setQuestions(questions);
+                    });
+            })
+            .catch(error => console.error('Error fetching product data:', error));
+
+        // Reset the form fields after a short delay
+        setTimeout(() => {
+            event.target.reset();
+            setQuestions(0);
+        }, 100);
+    };
+
+    /**
+     * 
+     * This function is for submitting tips
+     */
+    const submitTips = (data, event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+        console.log(data); // log all data
+
+        const tipsData = {
+            courseID: id,
+            date: data.date,
+            comment: data.comment
+        };
+
+        fetch('http://localhost:8081/tips', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(tipsData)
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                console.log('Success:', responseData);
+            })
+            .then(() => {
+                // Fetch updated ratings after posting a new rating
+                fetch(`http://localhost:8081/tips/${id}`)
+                    .then(response => response.json())
+                    .then(tips => {
+                        setTips(tips);
+                    });
+            })
+            .catch(error => console.error('Error fetching product data:', error));
+
+        // Reset the form fields after a short delay
+        setTimeout(() => {
+            event.target.reset();
+            setTips(0);
+        }, 100);
+    };
+
     /*
      * This creates the navbar for each view so it doesn't have to be retyped.
      */
@@ -284,9 +380,9 @@ function Ratings() {
                             </div>
                         </div>
                         <div class="subforum-subtitle">
-                            <button type="button" id="ratings-link" onclick={() => setCourseView(0)}><h1>Ratings</h1></button>
-                            <button type="button" id="questions-link" onclick={() => setCourseView(1)}><h1>Questions</h1></button>
-                            <button type="button" id="tips-link" onclick={() => setCourseView(2)}><h1>Tips</h1></button>
+                            <button type="button" id="ratings-link" onClick={() => setCourseView(0)}><h1>Ratings</h1></button>
+                            <button type="button" id="questions-link" onClick={() => setCourseView(1)}><h1>Questions</h1></button>
+                            <button type="button" id="tips-link" onClick={() => setCourseView(2)}><h1>Tips</h1></button>
                         </div>
                         {subsection()}
                     </div>
@@ -327,7 +423,7 @@ function Ratings() {
                 <div class="subforum-description subforum-column">
                     <div class="ratings-row">
                         <div class="ratings-column">
-                            <p><strong>Semester:</strong> {el.semester} </p>
+                            <p><strong>Semester Taken:</strong> {el.semester} </p>
                         </div>
                         <div class="ratings-column" style={{ textAlign: 'right' }}>
                             <p class="date">{el.date}</p>
@@ -370,30 +466,31 @@ function Ratings() {
                                     <div class="row g-3 mb-3">
                                         <div class="col-sm-6">
                                             <div className="form-group">
-                                                <input {...register("username", { required: true })} placeholder="Username" className="form-control" />
-                                                {errors.username && <p className="text-danger">Username is required.</p>}
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div className="form-group">
                                                 <input {...register("date", { required: true, pattern: /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/ })} placeholder="MM/DD/YYYY" className="form-control" />
                                                 {errors.date && <p className="text-danger">Date must be in form MM/DD/YYYY.</p>}
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row g-3 mb-3">
                                         <div class="col-md-5">
                                             <div className="form-group">
-                                                <input {...register("professor", { required: true })} placeholder="Instructor" className="form-control" />
-                                                {errors.professor && <p className="text-danger">Instructor name is required.</p>}
+                                                <input {...register("professor")} placeholder="Instructor (optional)" className="form-control" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        
+                                        
                                         <div class="col-md-4">
                                             <div className="form-group">
                                                 <input {...register("semester", { required: true, pattern: /^(Spring|Summer|Fall|Winter)\s\d{4}$/ })} placeholder="Semester YYYY" className="form-control" />
                                                 {errors.semester && <p className="text-danger">Semester is required.</p>}
                                             </div>
                                         </div>
+
+                                        <div class="col-md-5">
+                                            <div className="form-group">
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-3 ">
                                             <div className="form-group" style={{ textAlign: 'right' }}>
                                                 {renderStars()}
@@ -414,8 +511,8 @@ function Ratings() {
 
                                     {/* Submit Button */}
                                     <div class="row g-3 mb-3">
-                                        <div class="col">
-                                            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                                        <div class="col" style={{textAlign: 'center'}}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
                                         </div>
                                     </div>
                                 </form>
@@ -432,10 +529,74 @@ function Ratings() {
      * This subview shows the questions for a selected course.
      */
     function viewQuestions() {
+        const allQuestions = questions.map((el) => (
+            <div id="ratings" class="subforum-full-row">
+                <div class="subforum-description subforum-column">
+                    <div class="ratings-row">
+                        <div class="ratings-column" >
+                            <p class="date">{el.date}</p>
+                        </div>
+                    </div>
+                    <div class="ratings-full-row">
+                        <div class="ratings-column">
+                            <p>{el.question}</p>
+                        </div>
+                    </div>
+                    <div class="ratings-row">
+                        {/* <div class="ratings-column">
+                            <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
+                            <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
+                        </div> */}
+                        <div class="ratings-column" style={{ textAlign: 'right' }}>
+                            <button class="button-like-text" onClick={() => deleteRating(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ));
+
         return (
             <div>
-                <h1>Questions</h1>
-                {/* TODO setup questions view */}
+                <div><h1>Questions</h1></div>
+                <div class="subforum-full-row">
+                    <div class="subforum-column">
+                        <div class="row g-3">
+                            <div class="col">
+                                <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(submitQuestions)}>
+                                   
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-sm-6">
+                                            <div className="form-group">
+                                                <input {...register("date", { required: true, pattern: /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/ })} placeholder="MM/DD/YYYY" className="form-control" />
+                                                {errors.date && <p className="text-danger">Date must be in form MM/DD/YYYY.</p>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row g-3 mb-3">
+                                        <div class="col">
+                                            <textarea
+                                                {...register("comment", { required: true })}
+                                                placeholder="Enter your comment here"
+                                                className="form-control"
+                                                style={{ width: '100%', minHeight: '100px', resize: 'both' }}
+                                            />
+                                            {errors.comment && <p className="text-danger">Comment is required.</p>}
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div class="row g-3 mb-3">
+                                        <div class="col" style={{textAlign: 'center'}}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {allQuestions}
             </div>
         )
     }
@@ -444,10 +605,74 @@ function Ratings() {
      * This subview shows the tips for a selected course.
      */
     function viewTips() {
+        const allTips = tips.map((el) => (
+            <div id="ratings" class="subforum-full-row">
+                <div class="subforum-description subforum-column">
+                    <div class="ratings-row">
+                        <div class="ratings-column" >
+                            <p class="date">{el.date}</p>
+                        </div>
+                    </div>
+                    <div class="ratings-full-row">
+                        <div class="ratings-column">
+                            <p>{el.comment}</p>
+                        </div>
+                    </div>
+                    <div class="ratings-row">
+                        {/* <div class="ratings-column">
+                            <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
+                            <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
+                        </div> */}
+                        <div class="ratings-column" style={{ textAlign: 'right' }}>
+                            <button class="button-like-text" onClick={() => deleteRating(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ));
+
         return (
             <div>
-                <h1>Tips</h1>
-                {/* TODO setup tips view */}
+                <div><h1>Tips</h1></div>
+                <div class="subforum-full-row">
+                    <div class="subforum-column">
+                        <div class="row g-3">
+                            <div class="col">
+                                <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(submitTips)}>
+                                   
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-sm-6">
+                                            <div className="form-group">
+                                                <input {...register("date", { required: true, pattern: /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/ })} placeholder="MM/DD/YYYY" className="form-control" />
+                                                {errors.date && <p className="text-danger">Date must be in form MM/DD/YYYY.</p>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row g-3 mb-3">
+                                        <div class="col">
+                                            <textarea
+                                                {...register("comment", { required: true })}
+                                                placeholder="Enter your comment here"
+                                                className="form-control"
+                                                style={{ width: '100%', minHeight: '100px', resize: 'both' }}
+                                            />
+                                            {errors.comment && <p className="text-danger">Comment is required.</p>}
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div class="row g-3 mb-3">
+                                        <div class="col" style={{textAlign: 'center'}}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {allTips}
             </div>
         )
     }
@@ -472,15 +697,18 @@ function Ratings() {
                                     <h2>Class Information</h2>
                                     <p>Com S 319: Construction of User Interfaces</p>
                                     <p>Professor Ali Jannesari</p>
-                                    <p>April 27, 2024</p>
+                                    <p>May 9, 2024</p>
                                 </div>
                             </div>
                             <div class="subforum-full-row">
                                 <div class="subforum-column">
                                     <h2>Project Description</h2>
                                     <p class="title">Final Project</p>
-                                    {/* TODO add description */}
-                                    <p>Description goes here</p>
+                                    <p>This website is a ratings page that allows students to leave reviews
+                                        of the classes they've taken. The website was developed using MERN (MongoDB, Express, React, NodeJS)
+                                        along with bootstrap. Students are able to read reviews of various classes at ISU and leave their own
+                                        reviews, as well as questions or tips about the class.
+                                    </p>
                                 </div>
                             </div>
                             <div class="subforum-row-thirds">

@@ -11,5 +11,123 @@
                 "unhelpful": 1
             }
         ]
+
+    },
+    {
+        "id": 2,
+        "courseID": 2,
+        "date": "3/17/20",
+        "question": "Are there programming assignments?",
+        "answers": [
+            {
+                "answer": "yes, there are two of them.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "courseID": 3,
+        "date": "5/2/24",
+        "question": "Is this a difficult course?",
+        "answers": [
+            {
+                "answer": "No, it was fairly easy. I'd recommend it",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "courseID": 4,
+        "date": "12/12/23",
+        "question": "Is there a lot of reading?",
+        "answers": [
+            {
+                "answer": "Yes",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "courseID": 5,
+        "date": "7/8/22",
+        "question": "Is this class worth taking?",
+        "answers": [
+            {
+                "answer": "Yes! In my opinion it was a really interesting class that you'll learn a lot from.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "courseID": 6,
+        "date": "9/2/23",
+        "question": "Are there essays and are they graded hard?",
+        "answers": [
+            {
+                "answer": "There were two essays when I took it, but they weren't too difficult. The professor wasn't a super harsh grader either.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "courseID": 7,
+        "date": "1/2/22",
+        "question": "How difficult is this class?",
+        "answers": [
+            {
+                "answer": "This was a really difficult course for me. You definitely shouldn't take it unless required to or you really like physics.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "courseID": 8,
+        "date": "2/15/24",
+        "question": "Would you recommend this class?",
+        "answers": [
+            {
+                "answer": "I'd only recommend it for those who love physics/science as it can be difficult and a lot of work.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "courseID": 9,
+        "date": "3/3/24",
+        "question": "Should I take this at ISU or a community college?",
+        "answers": [
+            {
+                "answer": "I took it at DMACC and it was really easy. I've heard it's really hard at ISU, so I'd recommend a community college.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "courseID": 10,
+        "date": "5/3/24",
+        "question": "How hard is this class?",
+        "answers": [
+            {
+                "answer": "I actually found this easier than calc II, however, I wouldn't recommend it if you don't like math.",
+                "helpful": 4,
+                "unhelpful": 1
+            }
+        ]
     }
 ]

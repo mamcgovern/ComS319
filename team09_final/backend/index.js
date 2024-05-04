@@ -366,3 +366,28 @@ app.post("/tips", async (req, res) => {
         res.status(500).send({ error: 'An internal server error occurred' });
     }
 });
+
+
+//PUT tips
+
+app.put("/tips/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const query = { id: id };
+    await client.connect();
+    console.log("Tip to Update: ", id);
+    console.log(req.body); 
+    const updateData = {
+        $set: {
+            "tips": req.body.tips
+        }
+    };
+  
+    const tipUpdated = await db.collection("tips").findOne(query);
+    const options = {};
+    const results = await db.collection("tips").updateOne(query, updateData, options);
+    
+    if (results.matchedCount === 0) {
+        return res.status(404).send({ message: 'Tip not found' });
+    }
+    res.status(200).json({ results, updatedTip: tipUpdated });
+});

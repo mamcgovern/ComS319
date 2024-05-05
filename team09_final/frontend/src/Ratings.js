@@ -22,6 +22,7 @@ function Ratings() {
      */
     const [courseView, setCourseView] = useState(0);
 
+    const [allCourses, setAllCourses] = useState([]);
     const [courses, setCourses] = useState([]);
     const [course, setCourse] = useState([]);
     const [id, setInput] = useState();
@@ -40,6 +41,14 @@ function Ratings() {
             .then(response => response.json())
             .then(courses => {
                 setCourses(courses);
+            })
+    }, []);
+
+     useEffect(() => {
+        fetch("http://localhost:8081/courses/")
+            .then(response => response.json())
+            .then(courses => {
+                setAllCourses(courses);
             })
     }, []);
 
@@ -204,6 +213,33 @@ function Ratings() {
         }, 100);
     };
 
+     /*
+     * This function deletes a question by ID
+     */
+    function deleteQuestion(questionID) {
+        const confirmed = window.confirm("Are you sure you want to delete this question: " + questionID);
+        if (confirmed) {
+            console.log('Confirmed');
+            fetch(`http://localhost:8081/questions/${questionID}`, {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(
+                    { "id": questionID }
+                )
+            })
+                .then(response => response.json())
+                .then(() => {
+                    fetch(`http://localhost:8081/questions/${id}`)
+                        .then(response => response.json())
+                        .then(questions => {
+                            setQuestions(questions);
+                        });
+                });
+        } else {
+            console.log('Canceled');
+        }
+    }
+
     /**
      * 
      * This function is for submitting questions
@@ -245,6 +281,33 @@ function Ratings() {
             setQuestions(0);
         }, 100);
     };
+
+    /*
+     * This function deletes a tip by ID
+     */
+    function deleteTips(tipID) {
+        const confirmed = window.confirm("Are you sure you want to delete this question: " + tipID);
+        if (confirmed) {
+            console.log('Confirmed');
+            fetch(`http://localhost:8081/tips/${tipID}`, {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(
+                    { "id": tipID }
+                )
+            })
+                .then(response => response.json())
+                .then(() => {
+                    fetch(`http://localhost:8081/tips/${id}`)
+                        .then(response => response.json())
+                        .then(tips => {
+                            setTips(tips);
+                        });
+                });
+        } else {
+            console.log('Canceled');
+        }
+    }
 
     /**
      * 
@@ -288,6 +351,16 @@ function Ratings() {
         }, 100);
     };
 
+
+    const handleChange = (e) => {
+        setQuery(e.target.value);
+        const results = allCourses.filter(eachCourse => {
+            if (e.target.value == "") return allCourses;
+            return eachCourse.courseCode.toLowerCase().includes(e.target.value.toLowerCase())
+        });
+        setCourses(results);
+    }
+    
     /*
      * This creates the navbar for each view so it doesn't have to be retyped.
      */
@@ -307,8 +380,8 @@ function Ratings() {
                                         <button class="btn btn-primary rounded-pill px-3" onClick={() => setView(2)}>About</button>
                                     </li>
                                 </ul>
-                                <input type="text" placeholder="Enter Course ID" onChange={(e) => setInput(e.target.value)} />
-                                <button className="btn btn-primary" type="button" variant="light" onClick={() => getOneCourse(id)}>Find Course</button>
+                                <input type="text" placeholder="Enter Course ID" value={query} onChange={handleChange} />
+                              
                             </div>
                         </div>
                     </nav>
@@ -548,7 +621,7 @@ function Ratings() {
                             <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
                         </div> */}
                         <div class="ratings-column" style={{ textAlign: 'right' }}>
-                            <button class="button-like-text" onClick={() => deleteRating(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
+                            <button class="button-like-text" onClick={() => deleteQuestion(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>
                     </div>
                 </div>
@@ -624,7 +697,7 @@ function Ratings() {
                             <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
                         </div> */}
                         <div class="ratings-column" style={{ textAlign: 'right' }}>
-                            <button class="button-like-text" onClick={() => deleteRating(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
+                            <button class="button-like-text" onClick={() => deleteTips(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>
                     </div>
                 </div>

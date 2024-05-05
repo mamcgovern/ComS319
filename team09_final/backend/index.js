@@ -300,6 +300,24 @@ app.post("/questions", async (req, res) => {
     }
 });
 
+// Delete question by ID
+app.delete("/questions/:id", async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        await client.connect();
+        console.log("question to delete: ", id);
+        const query = { id: id };
+        // delete
+        const results = await db.collection("questions").deleteOne(query);
+        res.status(200);
+        res.send(results);
+    }
+    catch (error) {
+        console.error("Error deleting question:", error);
+        res.status(500).send({ message: 'Internal Server Error' });
+    }
+});
+
 /* Backend for Tips view */
 
 // Get all tips

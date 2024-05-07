@@ -530,6 +530,7 @@ function Ratings() {
 
         return (
             <div>
+                <div><h1>Ratings</h1></div>
                 <div class="subforum-full-row">
                     <div class="subforum-column">
                         <div class="row g-3">

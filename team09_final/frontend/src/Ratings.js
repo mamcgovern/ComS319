@@ -624,6 +624,19 @@ function Ratings() {
                             <button class="button-like-text" onClick={() => deleteQuestion(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>
                     </div>
+                    <div><hr></hr></div>
+                    <div class="ratings-full-row">
+                        {el.answers.map((e) => (
+                            <div style={{ margin: '1px', border: '1px solid black', paddingLeft: '8px'}}>
+                                <br/>
+                                <p>{e.answer}</p>
+                                {/* <div>
+                                    <button class="button-like-text" onClick={() => addHelpful(el.id, e.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {e.helpful}
+                                    <button class="button-like-text" onClick={() => addUnhelpful(el.id, e.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {e.unhelpful}
+                                </div> */}
+                            </div>
+                         ))}
+                    </div>
                 </div>
             </div>
         ));

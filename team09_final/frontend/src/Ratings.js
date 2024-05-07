@@ -616,10 +616,11 @@ function Ratings() {
                         </div>
                     </div>
                     <div class="ratings-row">
-                        {/* <div class="ratings-column">
-                            <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
-                            <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
-                        </div> */}
+                        <div class="ratings-column">
+                            // <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
+                            // <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
+                            <button type="button" class="btn btn-outline-secondary">Reply</button>
+                        </div> 
                         <div class="ratings-column" style={{ textAlign: 'right' }}>
                             <button class="button-like-text" onClick={() => deleteQuestion(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>

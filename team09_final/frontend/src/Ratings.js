@@ -615,8 +615,6 @@ function Ratings() {
                     </div>
                     <div class="ratings-row">
                         <div class="ratings-column">
-                            // <button class="button-like-text" onClick={() => addHelpful(el.id, el.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {el.helpful}
-                            // <button class="button-like-text" onClick={() => addUnhelpful(el.id, el.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {el.unhelpful}
                             <button type="button" class="btn btn-outline-secondary">Reply</button>
                         </div> 
                         <div class="ratings-column" style={{ textAlign: 'right' }}>
@@ -629,10 +627,6 @@ function Ratings() {
                             <div style={{ margin: '1px', border: '1px solid black', paddingLeft: '8px'}}>
                                 <br/>
                                 <p>{e.answer}</p>
-                                {/* <div>
-                                    <button class="button-like-text" onClick={() => addHelpful(el.id, e.helpful + 1)}><img src={thumbsUp} style={{ width: '25px' }} alt="thumbs up" /> </button> {e.helpful}
-                                    <button class="button-like-text" onClick={() => addUnhelpful(el.id, e.unhelpful + 1)}><img src={thumbsDown} style={{ width: '25px' }} alt="thumbs down" /></button> {e.unhelpful}
-                                </div> */}
                             </div>
                          ))}
                     </div>
@@ -661,12 +655,12 @@ function Ratings() {
                                     <div class="row g-3 mb-3">
                                         <div class="col">
                                             <textarea
-                                                {...register("comment", { required: true })}
-                                                placeholder="Enter your comment here"
+                                                {...register("question", { required: true })}
+                                                placeholder="Enter your question here"
                                                 className="form-control"
                                                 style={{ width: '100%', minHeight: '100px', resize: 'both' }}
                                             />
-                                            {errors.comment && <p className="text-danger">Comment is required.</p>}
+                                            {errors.question && <p className="text-danger">Question is required.</p>}
                                         </div>
                                     </div>
 

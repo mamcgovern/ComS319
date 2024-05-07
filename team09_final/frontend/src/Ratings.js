@@ -374,10 +374,10 @@ function Ratings() {
                                 <button class="button-like-text navbar-brand col-lg-3 me-0" onClick={() => setView(0)}>CourseRater</button>
                                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
                                     <li class="nav-item" style={{ margin: '5px' }}>
-                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => setView(0)}>Home</button>
+                                        <button class="btn btn-outline-light btn-lg" onClick={() => setView(0)}>Home</button>
                                     </li>
                                     <li class="nav-item" style={{ margin: '5px' }}>
-                                        <button class="btn btn-primary rounded-pill px-3" onClick={() => setView(2)}>About</button>
+                                        <button class="btn btn-outline-light btn-lg" onClick={() => setView(2)}>About</button>
                                     </li>
                                 </ul>
                                 <input type="text" placeholder="Enter Course ID" value={query} onChange={handleChange} />

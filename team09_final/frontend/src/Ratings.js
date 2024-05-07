@@ -252,7 +252,8 @@ function Ratings() {
         const questionData = {
             courseID: id,
             date: data.date,
-            question: data.question
+            question: data.question,
+            answers: []
         };
 
         fetch('http://localhost:8081/questions', {

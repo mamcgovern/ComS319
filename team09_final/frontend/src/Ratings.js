@@ -73,13 +73,13 @@ function Ratings() {
         fetch("http://localhost:8081/questions/" + id)
             .then(response => response.json())
             .then(questions => { setQuestions(questions) });
-        setView(1);
+        // setView(1);
         
         // get course tips
         fetch("http://localhost:8081/tips/" + id)
             .then(response => response.json())
             .then(tips => { setTips(tips) });
-        setView(1);
+        // setView(1);
     }
 
     /*
@@ -278,7 +278,6 @@ function Ratings() {
         // Reset the form fields after a short delay
         setTimeout(() => {
             event.target.reset();
-            setQuestions(0);
         }, 100);
     };
 
@@ -347,7 +346,6 @@ function Ratings() {
         // Reset the form fields after a short delay
         setTimeout(() => {
             event.target.reset();
-            setTips(0);
         }, 100);
     };
 

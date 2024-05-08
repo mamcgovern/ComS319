@@ -30,7 +30,7 @@ function Ratings() {
     const [questions, setQuestions] = useState([]);
     const [tips, setTips] = useState([]);
     const [rating, setRating] = useState(0);
-    const [query, setQuery] = useState(0);
+    const [query, setQuery] = useState();
     const { register, handleSubmit, formState: { errors }, unregister, reset } = useForm();
     const formRef = useRef(null);
     const [showReplyInput, setShowReplyInput] = useState(false);

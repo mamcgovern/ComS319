@@ -436,33 +436,6 @@ app.put("/tips/:id", async (req, res) => {
     res.status(200).json({ results, updatedTip: tipUpdated });
 });
 
-// //DELETE tips based on id --> this has some bugs
-
-// app.delete("/tips/:id", async (req, res) => {
-//     try {
-//         const id = Number(req.params.id);
-//         await client.connect();
-//         console.log("Tip to delete: ", id);
-//         const query = { id: id };
-       
-//         const updateData = {
-//             $unset: {
-//                 "tips": ""
-//             }
-//         };
-//         const options = {};
-//         const results = await db.collection("tips").updateOne(query, updateData, options);
-        
-//         if (results.matchedCount === 0) {
-//             return res.status(404).send({ message: 'Tip not found' });
-//         }
-//         res.status(200).json({ message: 'Tip deleted successfully' });
-//     }
-//     catch (error) {
-//         console.error("Error deleting tip:", error);
-//         res.status(500).send({ message: 'Internal Server Error' });
-//     }
-// });
 // Delete tip by ID
 app.delete("/tips/:id", async (req, res) => {
     try {

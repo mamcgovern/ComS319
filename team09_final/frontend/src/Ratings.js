@@ -31,12 +31,12 @@ function Ratings() {
     const [tips, setTips] = useState([]);
     const [rating, setRating] = useState(0);
     const [query, setQuery] = useState(0);
-    const { register, handleSubmit, formState: { errors }, unregister } = useForm();
+    const { register, handleSubmit, formState: { errors }, unregister, reset } = useForm();
     const formRef = useRef(null);
     const [showReplyInput, setShowReplyInput] = useState(false);
     const [replyQuestionID, setReplyQuestionID] = useState(null);
     const [existingAnswers, setExistingAnswers] = useState([]);
-    const { register: registerReply, handleSubmit: handleSubmitReply, formState: { errors: replyErrors },  reset} = useForm();
+    const { register: registerReply, handleSubmit: handleSubmitReply, formState: { errors: replyErrors },  reset: replyReset} = useForm();
     /*
      * This method updates the courses array.
      */
@@ -209,12 +209,7 @@ function Ratings() {
                     });
             })
             .catch(error => console.error('Error fetching product data:', error));
-
-        // Reset the form fields after a short delay
-        setTimeout(() => {
-            event.target.reset();
-            setRating(0);
-        }, 100);
+        reset();
     };
 
     /*
@@ -280,10 +275,7 @@ function Ratings() {
             })
             .catch(error => console.error('Error fetching product data:', error));
 
-        // Reset the form fields after a short delay
-        setTimeout(() => {
-            event.target.reset();
-        }, 100);
+        reset();
     };
 
     /*
@@ -294,7 +286,7 @@ function Ratings() {
         addAnswer(replyQuestionID, data.answer);
         setShowReplyInput(false);
         // Reset the form fields after a short delay
-        reset();
+        replyReset();
     };
 
     /*
@@ -390,10 +382,7 @@ function Ratings() {
             })
             .catch(error => console.error('Error fetching product data:', error));
 
-        // Reset the form fields after a short delay
-        setTimeout(() => {
-            event.target.reset();
-        }, 100);
+        reset();
     };
 
 

@@ -667,7 +667,7 @@ function Ratings() {
                                 className="form-control"
                                 style={{ width: '100%', minHeight: '100px', resize: 'both' }} />
                             {replyErrors.answer && <p className="text-danger">This field is required</p>}
-                            <button class=" btn btn-primary" type="submit">Submit Reply</button>
+                            <button class=" btn btn-primary" type="submit" style={{ marginTop: '20px' }}>Submit Reply</button>
                         </form>
                     </div>
                 );

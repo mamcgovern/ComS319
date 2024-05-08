@@ -6,9 +6,7 @@
         "question": "Is this a question?",
         "answers": [
             {
-                "answer": "This is an answer to your question.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "This is an answer to your question."
             }
         ]
 
@@ -20,9 +18,7 @@
         "question": "Are there programming assignments?",
         "answers": [
             {
-                "answer": "yes, there are two of them.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "yes, there are two of them."
             }
         ]
     },
@@ -33,9 +29,7 @@
         "question": "Is this a difficult course?",
         "answers": [
             {
-                "answer": "No, it was fairly easy. I'd recommend it",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "No, it was fairly easy. I'd recommend it"
             }
         ]
     },
@@ -46,9 +40,7 @@
         "question": "Is there a lot of reading?",
         "answers": [
             {
-                "answer": "Yes",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "Yes"
             }
         ]
     },
@@ -59,9 +51,7 @@
         "question": "Is this class worth taking?",
         "answers": [
             {
-                "answer": "Yes! In my opinion it was a really interesting class that you'll learn a lot from.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "Yes! In my opinion it was a really interesting class that you'll learn a lot from."
             }
         ]
     },
@@ -72,9 +62,7 @@
         "question": "Are there essays and are they graded hard?",
         "answers": [
             {
-                "answer": "There were two essays when I took it, but they weren't too difficult. The professor wasn't a super harsh grader either.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "There were two essays when I took it, but they weren't too difficult. The professor wasn't a super harsh grader either."
             }
         ]
     },
@@ -85,9 +73,7 @@
         "question": "How difficult is this class?",
         "answers": [
             {
-                "answer": "This was a really difficult course for me. You definitely shouldn't take it unless required to or you really like physics.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "This was a really difficult course for me. You definitely shouldn't take it unless required to or you really like physics."
             }
         ]
     },
@@ -98,9 +84,7 @@
         "question": "Would you recommend this class?",
         "answers": [
             {
-                "answer": "I'd only recommend it for those who love physics/science as it can be difficult and a lot of work.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "I'd only recommend it for those who love physics/science as it can be difficult and a lot of work."
             }
         ]
     },
@@ -111,9 +95,7 @@
         "question": "Should I take this at ISU or a community college?",
         "answers": [
             {
-                "answer": "I took it at DMACC and it was really easy. I've heard it's really hard at ISU, so I'd recommend a community college.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "I took it at DMACC and it was really easy. I've heard it's really hard at ISU, so I'd recommend a community college."
             }
         ]
     },
@@ -124,9 +106,7 @@
         "question": "How hard is this class?",
         "answers": [
             {
-                "answer": "I actually found this easier than calc II, however, I wouldn't recommend it if you don't like math.",
-                "helpful": 4,
-                "unhelpful": 1
+                "answer": "I actually found this easier than calc II, however, I wouldn't recommend it if you don't like math."
             }
         ]
     }

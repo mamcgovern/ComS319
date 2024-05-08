@@ -318,6 +318,32 @@ app.delete("/questions/:id", async (req, res) => {
     }
 });
 
+// Put: Add answer
+app.put("/questions/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const query = { id: id };
+    await client.connect();
+    console.log("Rating to Update: ", id);
+    // Data for updating the document, typically comes from the request body
+    console.log(req.body);
+    const updateData = {
+        $set: {
+            "answers": req.body.answers
+        }
+    };
+    // read data from question to update to send to frontend
+    const questionUpdated = await db.collection("questions").findOne(query);
+    // Add options if needed, for example { upsert: true } to create a document if it doesn't exist
+    const options = {};
+    const results = await db.collection("questions").updateOne(query, updateData, options);
+    // If no document was found to update, you can choose to handle it by sending a 404 response
+    if (results.matchedCount === 0) {
+        return res.status(404).send({ message: 'Rating not found' });
+    }
+    res.status(200);
+    res.status(200).json({ results, updatedRating: questionUpdated });
+});
+
 /* Backend for Tips view */
 
 // Get all tips

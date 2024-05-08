@@ -33,7 +33,10 @@ function Ratings() {
     const [query, setQuery] = useState(0);
     const { register, handleSubmit, formState: { errors }, unregister } = useForm();
     const formRef = useRef(null);
-
+    const [showReplyInput, setShowReplyInput] = useState(false);
+    const [replyQuestionID, setReplyQuestionID] = useState(null);
+    const [existingAnswers, setExistingAnswers] = useState([]);
+    const { register: registerReply, handleSubmit: handleSubmitReply, formState: { errors: replyErrors },  reset} = useForm();
     /*
      * This method updates the courses array.
      */
@@ -45,7 +48,7 @@ function Ratings() {
             })
     }, []);
 
-     useEffect(() => {
+    useEffect(() => {
         fetch("http://localhost:8081/courses/")
             .then(response => response.json())
             .then(courses => {
@@ -69,13 +72,13 @@ function Ratings() {
             .then(response => response.json())
             .then(ratings => { setRatings(ratings) });
         setView(1);
-        
+
         // get course questions
         fetch("http://localhost:8081/questions/" + id)
             .then(response => response.json())
             .then(questions => { setQuestions(questions) });
         // setView(1);
-        
+
         // get course tips
         fetch("http://localhost:8081/tips/" + id)
             .then(response => response.json())
@@ -214,9 +217,9 @@ function Ratings() {
         }, 100);
     };
 
-     /*
-     * This function deletes a question by ID
-     */
+    /*
+    * This function deletes a question by ID
+    */
     function deleteQuestion(questionID) {
         const confirmed = window.confirm("Are you sure you want to delete this question: " + questionID);
         if (confirmed) {
@@ -282,6 +285,48 @@ function Ratings() {
             event.target.reset();
         }, 100);
     };
+
+    /*
+     * This handles replies/answers to questions
+     */
+    const submitReply = (data, event) => {
+        event.preventDefault(); // Prevent default form submission behavior
+        addAnswer(replyQuestionID, data.answer);
+        setShowReplyInput(false);
+        // Reset the form fields after a short delay
+        reset();
+    };
+
+    /*
+     * This is the frontend method for adding an answer to a question
+     * (put request)
+     */
+    function addAnswer(questionID, answerString) {
+        // Combine existing answers with the new answer
+        const updatedAnswers = [...existingAnswers, { answer: answerString }];
+
+        fetch(`http://localhost:8081/questions/${questionID}`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+                answers: updatedAnswers
+            })
+        })
+            .then(response => response.json())
+            .then(() => {
+                // After updating, fetch the updated question data
+                fetch(`http://localhost:8081/questions/${questionID}`)
+                    .then(response => response.json())
+                    .then(questions => {
+                        setRatings(questions);
+                    });
+            })
+            .then(() => {
+                fetch("http://localhost:8081/questions/" + id)
+                    .then(response => response.json())
+                    .then(questions => { setQuestions(questions) });
+            });
+    }
 
     /*
      * This function deletes a tip by ID
@@ -360,7 +405,7 @@ function Ratings() {
         });
         setCourses(results);
     }
-    
+
     /*
      * This creates the navbar for each view so it doesn't have to be retyped.
      */
@@ -381,7 +426,7 @@ function Ratings() {
                                     </li>
                                 </ul>
                                 <input type="text" placeholder="Enter Course ID" value={query} onChange={handleChange} />
-                              
+
                             </div>
                         </div>
                     </nav>
@@ -536,7 +581,7 @@ function Ratings() {
                         <div class="row g-3">
                             <div class="col">
                                 <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(onSubmit)}>
-                                   
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-sm-6">
                                             <div className="form-group">
@@ -551,8 +596,8 @@ function Ratings() {
                                         </div>
                                     </div>
                                     <div class="row g-3 mb-3">
-                                        
-                                        
+
+
                                         <div class="col-md-4">
                                             <div className="form-group">
                                                 <input {...register("semester", { required: true, pattern: /^(Spring|Summer|Fall|Winter)\s\d{4}$/ })} placeholder="Semester YYYY" className="form-control" />
@@ -585,8 +630,8 @@ function Ratings() {
 
                                     {/* Submit Button */}
                                     <div class="row g-3 mb-3">
-                                        <div class="col" style={{textAlign: 'center'}}>
-                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
+                                        <div class="col" style={{ textAlign: 'center' }}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{ width: '75%' }}>Post</button>
                                         </div>
                                     </div>
                                 </form>
@@ -603,35 +648,63 @@ function Ratings() {
      * This subview shows the questions for a selected course.
      */
     function viewQuestions() {
+        // Function to handle showing/hiding reply input area
+        const toggleReplyInput = (questionID, ans) => {
+            setShowReplyInput(!showReplyInput);
+            setReplyQuestionID(questionID);
+            setExistingAnswers(ans);
+        };
+
+        // Render reply input area if showReplyInput is true
+        const renderReplyInput = (questionID) => {
+            if (showReplyInput && replyQuestionID === questionID) {
+                return (
+                    <div>
+                        <form onSubmit={handleSubmitReply(submitReply)}>
+                            {/* Form inputs for reply */}
+                            <textarea {...registerReply("answer", { required: true })}
+                                placeholder="Enter your answer here"
+                                className="form-control"
+                                style={{ width: '100%', minHeight: '100px', resize: 'both' }} />
+                            {replyErrors.answer && <p className="text-danger">This field is required</p>}
+                            <button class=" btn btn-primary" type="submit">Submit Reply</button>
+                        </form>
+                    </div>
+                );
+            }
+            return null;
+        };
+
         const allQuestions = questions.map((el) => (
-            <div id="ratings" class="subforum-full-row">
-                <div class="subforum-description subforum-column">
-                    <div class="ratings-row">
-                        <div class="ratings-column" >
-                            <p class="date">{el.date}</p>
+            <div id="ratings" className="subforum-full-row">
+                <div className="subforum-description subforum-column">
+                    <div className="ratings-row">
+                        <div className="ratings-column">
+                            <p className="date">{el.date}</p>
                         </div>
                     </div>
-                    <div class="ratings-full-row">
-                        <div class="ratings-column">
+                    <div className="ratings-full-row">
+                        <div className="ratings-column">
                             <p>{el.question}</p>
                         </div>
                     </div>
-                    <div class="ratings-row">
-                        <div class="ratings-column">
-                            <button type="button" class="btn btn-outline-secondary">Reply</button>
-                        </div> 
-                        <div class="ratings-column" style={{ textAlign: 'right' }}>
-                            <button class="button-like-text" onClick={() => deleteQuestion(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
+                    <div className="ratings-row">
+                        <div className="ratings-column">
+                            <button type="button" className="btn btn-outline-secondary" onClick={() => toggleReplyInput(el.id, el.answers)}>Reply</button>
+                        </div>
+                        <div className="ratings-column" style={{ textAlign: 'right' }}>
+                            <button className="button-like-text" onClick={() => deleteQuestion(el.id)}><img src={trash} style={{ width: '25px' }} alt="trash" /></button>
                         </div>
                     </div>
+                    <div>{renderReplyInput(el.id)}</div>
                     <div><hr></hr></div>
-                    <div class="ratings-full-row">
+                    <div className="ratings-full-row">
                         {el.answers.map((e) => (
-                            <div style={{ margin: '1px', border: '1px solid black', paddingLeft: '8px'}}>
-                                <br/>
+                            <div style={{ margin: '1px', border: '1px solid black', paddingLeft: '8px' }}>
+                                <br />
                                 <p>{e.answer}</p>
                             </div>
-                         ))}
+                        ))}
                     </div>
                 </div>
             </div>
@@ -645,7 +718,7 @@ function Ratings() {
                         <div class="row g-3">
                             <div class="col">
                                 <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(submitQuestions)}>
-                                   
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-sm-6">
                                             <div className="form-group">
@@ -654,7 +727,7 @@ function Ratings() {
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row g-3 mb-3">
                                         <div class="col">
                                             <textarea
@@ -669,8 +742,8 @@ function Ratings() {
 
                                     {/* Submit Button */}
                                     <div class="row g-3 mb-3">
-                                        <div class="col" style={{textAlign: 'center'}}>
-                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
+                                        <div class="col" style={{ textAlign: 'center' }}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{ width: '75%' }}>Post</button>
                                         </div>
                                     </div>
                                 </form>
@@ -680,8 +753,9 @@ function Ratings() {
                 </div>
                 {allQuestions}
             </div>
-        )
+        );
     }
+
 
     /*
      * This subview shows the tips for a selected course.
@@ -721,7 +795,7 @@ function Ratings() {
                         <div class="row g-3">
                             <div class="col">
                                 <form class="needs-validation" ref={formRef} onSubmit={handleSubmit(submitTips)}>
-                                   
+
                                     <div class="row g-3 mb-3">
                                         <div class="col-sm-6">
                                             <div className="form-group">
@@ -730,7 +804,7 @@ function Ratings() {
                                             </div>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row g-3 mb-3">
                                         <div class="col">
                                             <textarea
@@ -745,8 +819,8 @@ function Ratings() {
 
                                     {/* Submit Button */}
                                     <div class="row g-3 mb-3">
-                                        <div class="col" style={{textAlign: 'center'}}>
-                                            <button class=" btn btn-primary btn-lg" type="submit" style={{width: '75%'}}>Post</button>
+                                        <div class="col" style={{ textAlign: 'center' }}>
+                                            <button class=" btn btn-primary btn-lg" type="submit" style={{ width: '75%' }}>Post</button>
                                         </div>
                                     </div>
                                 </form>
@@ -845,7 +919,7 @@ function Ratings() {
                                 <img src={brokenRobot} alt="Broken Robot" style={{ width: '100px' }} />
                                 <p class="title">Error 404: Page Not Found</p>
                                 <p>The page you are looking for may have been moved, deleted, or possibly never existed.</p>
-                                <p>Click <button class="button-like-text" style={{ color: '#177e89'}} onClick={() => setView(0)}>here</button> to go back home.</p>
+                                <p>Click <button class="button-like-text" style={{ color: '#177e89' }} onClick={() => setView(0)}>here</button> to go back home.</p>
                             </div>
                         </div>
                     </div>
